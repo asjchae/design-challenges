@@ -8,7 +8,6 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , passport = require('./routes/passport')
   , GoogleStrategy = require('passport-google').Strategy;
 
 var app = express();
@@ -34,7 +33,7 @@ app.get('/users', user.list);
 
 
 // Google Authentication.
-app.get('/login', index.login);
+// app.get('/login', index.login);
 
 
 http.createServer(app).listen(app.get('port'), function(){
