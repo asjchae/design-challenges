@@ -33,7 +33,7 @@ app.get('/users', user.list);
 
 
 // Google Authentication.
-// app.get('/login', index.login);
+app.get('/login', user.login);
 
 
 http.createServer(app).listen(app.get('port'), function(){
