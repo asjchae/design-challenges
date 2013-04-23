@@ -24,24 +24,16 @@ exports.signup = function(req, res) {
 };
 
 exports.signuptest = function(req, res) {
-    console.log(req.body.teamname);
     bcrypt.genSalt(10, function(err, salt) {
-        console.log('a');
         bcrypt.hash(req.body.pwd, salt, function(err, hash) {
-            console.log('b');
             var team = new Team({teamname: req.body.teamname, password: hash});
-            console.log('b.1');
-            console.log(team);
             team.save(function (err) {
-                console.log('c');
                 if (err) {
                     console.log("Problem signing team up", err);
                 } else {
-                    console.log('d');
-                    res.send("You are now signed up!");
+                    res.send("You are now signed up, " + req.body.teamname + "!");
                 }
             });
-            console.log('asyncccccmeow');
         });
     });
 };
