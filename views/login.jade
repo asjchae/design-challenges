@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= title
+
+  form(method='post')
+    | Username:
+    input(type='text', name='username', id='username')
+    br
+    | Password:
+    input(type='password', name='pwd', id='password')
+    br
+    input(type='submit', value='Submit')

@@ -9,8 +9,10 @@ exports.list = function(req, res){
   res.send("respond with a resource");
 };
 
-exports.login = function(req, res) {
-  res.send("log in");
-    // req.session.url = '/fetch';
-	// res.render('login', {title: "Sign In"});
+exports.logintest = function(req, res) {
+	res.render('login', {title: "Sign In"});
+};
+
+exports.signuptest = function(req, res) {
+
 };
