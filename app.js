@@ -38,10 +38,10 @@ app.get('/', routes.index);
 
 // Authentication.
 app.get('/login', team.login);
-app.post('/logintest', team.logintest);
+app.post('/loginpost', team.loginpost);
 
 app.get('/signup', team.signup);
-app.post('/signuptest', team.signuptest);
+app.post('/signuppost', team.signuppost);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
