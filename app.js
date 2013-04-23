@@ -5,15 +5,17 @@
 
 var express = require('express')
   , routes = require('./routes')
-  , user = require('./routes/user')
+  , team = require('./routes/team')
   , http = require('http')
   , path = require('path')
-  , GoogleStrategy = require('passport-google').Strategy
   , challenge = require('./models/challengemodel')
   , team = require('./models/teammodel')
   , project = require('./models/projectmodel');
+  , bcrypt = require('bcrypt')
+  , mongoose = require('mongoose');
 
 var app = express();
+mongoose.connect(process.env.MONGOLAB_URI || 'localhost/designchallenges');
 
 app.configure(function(){
   app.set('port', process.env.PORT || 3000);
@@ -32,13 +34,14 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/users', user.list);
-app.get('/compile', user.compile);
 
 
-// Google Authentication.
-app.get('/login', user.login);
+// Authentication.
+app.get('/login', team.login);
+app.post('/logintest', team.logintest);
 
+app.get('/signup', team.signup);
+app.post('/signuptest', team.signuptest);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
