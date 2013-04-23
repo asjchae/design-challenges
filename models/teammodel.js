@@ -2,6 +2,7 @@ var mongoose = require('mongoose')
 
 var teamschema = mongoose.Schema({ 
     teamname: String,
+    password: String,
     captain: {name: String, email: String},
     members: [{name: String, email: String}],
     score: Number,

@@ -1,5 +1,5 @@
 var bcrypt = require('bcrypt')
-    , Team = require('../models/team_schema')
+    , Team = require('../models/teammodel')
     , mongoose = require('mongoose');
 
 
