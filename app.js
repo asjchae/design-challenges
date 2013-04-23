@@ -8,7 +8,10 @@ var express = require('express')
   , user = require('./routes/user')
   , http = require('http')
   , path = require('path')
-  , GoogleStrategy = require('passport-google').Strategy;
+  , GoogleStrategy = require('passport-google').Strategy
+  , challenge = require('./models/challengemodel')
+  , team = require('./models/teammodel')
+  , project = require('./models/projectmodel');
 
 var app = express();
 
@@ -30,6 +33,7 @@ app.configure('development', function(){
 
 app.get('/', routes.index);
 app.get('/users', user.list);
+app.get('/compile', user.compile);
 
 
 // Google Authentication.
