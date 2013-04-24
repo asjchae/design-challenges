@@ -16,7 +16,19 @@ exports.login = function(req, res) {
 };
 
 exports.loginpost = function(req, res) {
-    // Put checking hash stuff here.
+    var team = Team.findOne({teamname: req.body.teamname}).exec(function (err, teamdata) {
+        if (err) {
+            return console.log("Could not find team name", err);
+        } else {
+            bcrypt.compare(req.body.pwd, teamdata.password, function (err, boolean) {
+                if (boolean == true) {
+                    // Log them in.
+                } else if (boolean == false) {
+                    // Tell them to re-enter the password
+                }
+            });
+        }
+    });
 };
 
 exports.signup = function(req, res) {
