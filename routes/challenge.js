@@ -28,7 +28,6 @@ exports.challengebrowser = function(req, res){
             res.send("Could not find all challenges");
         } else {
             challengepacker(data, res, function (res, challenge) {
-                console.log(challenge);
                 res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge});
             })
         }
@@ -41,14 +40,17 @@ function challengepacker(data, res, callback) {
     for (var i = 0; i<data.length; i++) {
         challenge.push(data[i]);
     } 
-    console.log(challenge);
     callback(res, challenge);
 };
 
 
 
 exports.selectchallenge = function(req, res){
-    res.send("Needs to be implemented");
+    if (req.session.teamname == undefined) {
+        return res.redirect('/login');
+    }
+    console.log(req.session.teamname);
+    console.log(req.body.projectname)
 };
 
 exports.submitchallenge = function(req, res){
