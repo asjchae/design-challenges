@@ -3,11 +3,13 @@ extends layout
 block content
     script(src='/javascripts/challengeselect.js')
     each challenge, i in challengepack
-        h4 #{challenge.name}
-        | Type: #{challenge.type}
-        br
-        | Prompt #{challenge.prompt}
-        br
-        | Description #{challenge.description}
-        br
-        button.challengeselect(value=challenge.name)  Select
+        div.challenge
+            h4 #{challenge.name}
+            | Type: #{challenge.type}
+            br
+            | Prompt:  #{challenge.prompt}
+            div.hidden
+                br
+                | Description: #{challenge.description}
+                br
+                button.challengeselect(value=challenge.name)  Select

@@ -8,7 +8,7 @@ var teamschema = mongoose.Schema({
     score: Number,
     interests: [{interest: String, completions: Number}], 
     picture: String,
-    projects: [{projectname: String, }]
+    projects: [{projectname: String}]
 });
 
 var Team = mongoose.model('Team', teamschema);

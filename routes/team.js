@@ -35,13 +35,29 @@ exports.signup = function(req, res) {
 // Sign up post.
 
 exports.signuppost = function(req, res) {
+    console.log(req.body)
     var checkname = Team.findOne({teamname: req.body.teamname}).exec(function (err, data) {
         if (err) {
             console.log("Could not search for existing team", err);
         } else if (!data) {
             bcrypt.genSalt(10, function(err, salt) {
                 bcrypt.hash(req.body.pwd, salt, function(err, hash) {
-                    var team = new Team({teamname: req.body.teamname, password: hash});
+                    var interests = []
+                    for (i in req.body.interests) {
+                        interests.push({'interest':req.body.interests[i], 'completions':0})
+                    }
+                    var members = []
+                    for (m in req.body.member) {
+                        members.push({'name':req.body.member[m], 'email':req.body.emailmember[m]})
+                    }
+                    var team = new Team({
+                        teamname: req.body.teamname, 
+                        password: hash,
+                        captain: {'name': req.body.captain, 'email': req.body.emailcaptain},
+                        members: members,
+                        interests: interests
+                        });
+                    console.log(team)
                     team.save(function (err) {
                         if (err) {
                             console.log("Problem signing team up", err);

@@ -25,10 +25,3 @@ post submitchallenge
 // non essential for first sprint
 
 get leaderboard
-
-
-
-
-THINGS WE NEED TO CONSIDER.
-
-Sessions?
