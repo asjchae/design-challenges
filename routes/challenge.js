@@ -35,6 +35,7 @@ exports.challengebrowser = function(req, res){
     });
 };
 
+// Function to sort through array of all challenges.
 function challengepacker(data, res, callback) {
     var challenge = [];
     for (var i = 0; i<data.length; i++) {
@@ -43,6 +44,7 @@ function challengepacker(data, res, callback) {
     console.log(challenge);
     callback(res, challenge);
 };
+
 
 exports.selectchallenge = function(req, res){
     res.send("Needs to be implemented");
