@@ -49,3 +49,13 @@ exports.signuppost = function(req, res) {
         });
     });
 };
+
+exports.teampage = function(req, res){
+    res.send("Needs to be implemented");
+};
+
+exports.leaderboard = function(req, res){
+    res.send("Needs to be implemented");
+};
+
+
