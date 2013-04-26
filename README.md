@@ -26,3 +26,9 @@ post submitchallenge
 
 get leaderboard
 
+
+
+
+THINGS WE NEED TO CONSIDER.
+
+Sessions?
