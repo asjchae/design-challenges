@@ -1,6 +1,7 @@
 extends layout
 
 block content
+    script(src='/javascripts/challengeselect.js')
     each challenge, i in challengepack
         h4 #{challenge.name}
         | Type: #{challenge.type}
@@ -9,4 +10,4 @@ block content
         br
         | Description #{challenge.description}
         br
-        br
+        button.challengeselect(value=challenge.name)  Select

@@ -2,9 +2,29 @@ doctype 5
 html
   head
     title= title
-
+    script(src='http://code.jquery.com/jquery.js')
     link(rel='stylesheet', href='/stylesheets/style.css')
 
     link(rel='stylesheet', href='/stylesheets/bootstrap.css')
   body
-    block content
+    .navbar.navbar-inverse.navbar-fixed-top
+      .navbar-inner
+        .container
+          button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          a.brand(href='#') Yes
+          .nav-collapse.collapse
+            ul.nav
+              li.active
+                a(href='#') Challenge Browser
+              li
+                a(href='/teampage') My Team 
+              li
+                a(href='/addchallenge') Add a Challenge
+              li
+                a(href='/') About Yes
+               
+    .container(id='page')
+      block content 
