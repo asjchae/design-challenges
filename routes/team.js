@@ -16,7 +16,7 @@ exports.loginpost = function(req, res) {
             bcrypt.compare(req.body.pwd, teamdata.password, function (err, boolean) {
                 if (boolean == true) {
                     console.log("Logged in " + req.body.teamname);
-                    res.redirect('/');
+                    login(req, res, team);
                 } else if (boolean == false) {
                     res.redirect('/login'); // Just takes you back to log in screen, maybe we can add a cool error message later.
                 }
@@ -46,13 +46,13 @@ exports.signuppost = function(req, res) {
                         if (err) {
                             console.log("Problem signing team up", err);
                         } else {
-                            res.redirect('/'); // Redirecting to home after signing up, for now.
+                            login(req, res, team);
                         }
                     });
                 });
             });
         } else {
-            res.send("Already a user.") // Should probably redirect to log in screen? Like, "Redirecting in 5...4...3..."
+            res.send("Username is already taken.") // Should probably redirect to log in screen? Like, "Redirecting in 5...4...3..."
         }
     });
 };
@@ -64,3 +64,9 @@ exports.teampage = function(req, res){
 exports.leaderboard = function(req, res){
     res.send("Needs to be implemented");
 };
+
+// Sessions
+function login(req, res, team) {
+    req.session.teamname = req.body.teamname;
+    return res.redirect('/');
+}
