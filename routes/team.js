@@ -57,5 +57,3 @@ exports.teampage = function(req, res){
 exports.leaderboard = function(req, res){
     res.send("Needs to be implemented");
 };
-
-

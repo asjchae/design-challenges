@@ -11,7 +11,8 @@ var express = require('express')
   , challenge = require('./routes/challenge')
   , team = require('./routes/team')
   , bcrypt = require('bcrypt')
-  , mongoose = require('mongoose');
+  , mongoose = require('mongoose')
+  , dbmanage = require('./routes/dbmanage');
 
 var app = express();
 mongoose.connect(process.env.MONGOLAB_URI || 'localhost/designchallenges');
@@ -60,6 +61,10 @@ app.post('/selectchallenge', challenge.selectchallenge);
 
 app.post('/submitchallenge', challenge.submitchallenge);
 
+
+// Database administrative test routes.
+app.get('/teams/view', dbmanage.teams);
+app.get('/teams/delete', dbmanage.deleteteams);
 
 
 http.createServer(app).listen(app.get('port'), function(){
