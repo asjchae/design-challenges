@@ -1,6 +1,7 @@
 var Team = require('../models/teammodel')
     , mongoose = require('mongoose');
 
+// Lists all the teams.
 exports.teams = function(req, res) {
 	var allTeams = Team.find({}).sort('teamname').exec(function(err, response) {
 		if (err) {
@@ -11,8 +12,8 @@ exports.teams = function(req, res) {
 	});
 };
 
-
+// Deletes all the teams.
 exports.deleteteams = function(req, res) {
 	var deleteAll = Team.find({}).remove();
-	res.redirect('/teams');
+	res.redirect('/teams/view');
 }
