@@ -1,5 +1,5 @@
 var  Team = require('../models/teammodel')
-    , Challenge = require('../models/challengebrowsermodel')
+    , Challenge = require('../models/challengemodel')
     , mongoose = require('mongoose');
 
 
@@ -24,15 +24,24 @@ exports.addchallengepost = function(req, res){
 
 exports.challengebrowser = function(req, res){
     var allChallenges = Challenge.find({}).exec(function (err, data) {
-        console.log(data);
         if (err) {
             res.send("Could not find all challenges");
         } else {
-            var challengepack = [data.name, data.type, data.prompt, data.description];
-            console.log(challengepack);
-            // res.render('challengebrowser', {title: "Challenge Browser", challengepack: challengepack});
+            challengepacker(data, res, function (res, challenge) {
+                console.log(challenge);
+                res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge});
+            })
         }
-    })
+    });
+};
+
+function challengepacker(data, res, callback) {
+    var challenge = [];
+    for (var i = 0; i<data.length; i++) {
+        challenge.push(data[i]);
+    } 
+    console.log(challenge);
+    callback(res, challenge);
 };
 
 exports.selectchallenge = function(req, res){

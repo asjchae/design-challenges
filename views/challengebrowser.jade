@@ -2,7 +2,11 @@ extends layout
 
 block content
     each challenge, i in challengepack
-        h4 challenge.name
+        h4 #{challenge.name}
         | Type: #{challenge.type}
+        br
         | Prompt #{challenge.prompt}
+        br
         | Description #{challenge.description}
+        br
+        br
