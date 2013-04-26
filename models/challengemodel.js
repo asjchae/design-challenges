@@ -1,6 +1,6 @@
 var mongoose = require('mongoose')
 
-var projectschema = mongoose.Schema({ 
+var challengeschema = mongoose.Schema({ 
     name: String,
     type: String,
     prompt: String,
@@ -9,11 +9,7 @@ var projectschema = mongoose.Schema({
     email: String
 
 });
-var project = mongoose.model('Project', projectschema);
+var Challenge = mongoose.model('Challenge', challengeschema);
 
-var twitschema = mongoose.Schema({
-  user: String,
-  twit:String
-});
-
-exports.project = project
+module.exports = Challenge;
+ 
