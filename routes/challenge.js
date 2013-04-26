@@ -1,5 +1,5 @@
 var  Team = require('../models/teammodel')
-    , Challenge = require('../models/projectmodel');
+    , Challenge = require('../models/projectmodel')
     , mongoose = require('mongoose');
 
 
