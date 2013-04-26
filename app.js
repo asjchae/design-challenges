@@ -65,6 +65,8 @@ app.post('/submitchallenge', challenge.submitchallenge);
 // Database administrative test routes.
 app.get('/teams/view', dbmanage.teams);
 app.get('/teams/delete', dbmanage.deleteteams);
+app.get('/challenges/view', dbmanage.challenges);
+app.get('/challenges/delete', dbmanage.deletechallenges);
 
 
 http.createServer(app).listen(app.get('port'), function(){

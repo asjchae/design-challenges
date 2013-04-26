@@ -15,16 +15,24 @@ exports.addchallengepost = function(req, res){
     challenge.save(function (err) {
         if (err) {
             console.log("Problem signing team up", err);
-
-            res.send("WOw there friend, you may need to slow down!");
+            res.send("Wow there friend, you may need to slow down!");
         } else {
-            res.send("You're challenge is added, " + req.body.name + "!");
+            res.send("Your challenge is added! " + req.body.name + "!");
         }
     });
 };
 
 exports.challengebrowser = function(req, res){
-    res.send("Needs to be implemented");
+    var allChallenges = Challenge.find({}).exec(function (err, data) {
+        console.log(data);
+        if (err) {
+            res.send("Could not find all challenges");
+        } else {
+            var challengepack = [data.name, data.type, data.prompt, data.description];
+            console.log(challengepack);
+            // res.render('challengebrowser', {title: "Challenge Browser", challengepack: challengepack});
+        }
+    })
 };
 
 exports.selectchallenge = function(req, res){
