@@ -11,6 +11,6 @@ var teamschema = mongoose.Schema({
     projects: [{projectname: String, }]
 });
 
-var team = mongoose.model('Team', teamschema);
+var Team = mongoose.model('Team', teamschema);
 
-exports.team = team;
+module.exports = Team;

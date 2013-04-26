@@ -8,7 +8,7 @@ var projectschema = mongoose.Schema({
 
 });
 
-var project = mongoose.model('Project', projectschema);
+var Project = mongoose.model('Project', projectschema);
 
-exports.project = project;
+module.exports = Project;
 
