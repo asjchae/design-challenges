@@ -1,5 +1,5 @@
 var  Team = require('../models/teammodel')
-    , Challenge = require('../models/challengemodel')
+    , Challenge = require('../models/challengebrowsermodel')
     , mongoose = require('mongoose');
 
 
@@ -18,7 +18,7 @@ exports.addchallengepost = function(req, res){
 
             res.send("WOw there friend, you may need to slow down!");
         } else {
-            res.send("You're challenge is added! " + req.body.name + "!");
+            res.send("You're challenge is added, " + req.body.name + "!");
         }
     });
 };

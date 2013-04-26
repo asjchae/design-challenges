@@ -1,0 +1,8 @@
+extends layout
+
+block content
+    each challenge, i in challengepack
+        h4 challenge.name
+        | Type: #{challenge.type}
+        | Prompt #{challenge.prompt}
+        | Description #{challenge.description}
