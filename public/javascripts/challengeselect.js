@@ -1,5 +1,7 @@
 $(function(){
      $(".challengeselect").click( function (evt) {
+
+        console.log("called!")
         $.post("/selectchallenge", {projectname: this.value}, function (data) {
         	window.location = data.redirect;
         });
