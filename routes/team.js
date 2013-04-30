@@ -82,7 +82,6 @@ exports.teampage = function(req, res){
         if (err) {
             res.send("Could not find team");
         } else {
-            console.log(team);
             var myteam = data[0]
             var interests = [];
             for (var i=0; i<myteam.interests.length; i++) {
