@@ -1,17 +1,16 @@
 extends layout
 
 block content
-    //- script(src='/javascripts/challengeselect.js')
+    script(src='/javascripts/challengeselect.js')
     each challenge, i in challengepack
-        form(method='post', action='/selectchallenge/'+challenge.name)
-            
-            div.challenge
-                h4 #{challenge.name}
-                | Type: #{challenge.type}
+       
+        div.challenge
+            h4 #{challenge.name}
+            | Type: #{challenge.type}
+            br
+            | Prompt:  #{challenge.prompt}
+            div.hidden
                 br
-                | Prompt:  #{challenge.prompt}
-                div.hidden
-                    br
-                    | Description: #{challenge.description}
-                    br
-                    button.challengeselect(value=challenge.name)  Select
+                | Description: #{challenge.description}
+                br
+                button.challengeselect(value=challenge.name)  Select

@@ -55,9 +55,13 @@ app.post('/addchallenge', challenge.addchallengepost);
 
 app.get('/challengebrowser', challenge.challengebrowser);
 
-app.post('/selectchallenge/:selected', function(req,res){
-  challenge.selectchallenge(req, res, req.params.selected)
-});
+
+app.post('/selectchallenge', challenge.selectchallenge);
+
+
+// app.post('/selectchallenge/:selected', function(req,res){
+//   challenge.selectchallenge(req, res, req.params.selected)
+// });
   //challenge.selectchallenge);
 
 
