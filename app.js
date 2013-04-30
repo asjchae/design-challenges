@@ -69,8 +69,11 @@ app.post('/selectchallenge', challenge.selectchallenge);
 // This one needs work, how do we do that thing where we we can write anything and it parses it
 app.get('/challengepage/:selected', challenge.challengepage);
 
-app.post('/submitchallenge', challenge.submitchallenge);
 
+app.get('/submitchallenge', challenge.submitchallenge);
+
+app.post('/submitchallenge', challenge.submitchallenge);
+app.post('/upload', challenge.upload)
 
 // Database administrative test routes.
 app.get('/teams/view', dbmanage.teams);
