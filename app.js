@@ -66,7 +66,7 @@ app.post('/selectchallenge', challenge.selectchallenge);
 
 
 // This one needs work, how do we do that thing where we we can write anything and it parses it
-//app.get('/challengepage', challenge.challengepage);
+app.get('/challengepage/:selected', challenge.challengepage);
 
 app.post('/submitchallenge', challenge.submitchallenge);
 
