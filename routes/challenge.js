@@ -28,7 +28,6 @@ exports.challengebrowser = function(req, res){
             res.send("Could not find all challenges");
         } else {
             challengepacker(data, res, function (res, challenge) {
-                console.log(challenge);
                 res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge});
             })
         }
@@ -41,15 +40,40 @@ function challengepacker(data, res, callback) {
     for (var i = 0; i<data.length; i++) {
         challenge.push(data[i]);
     } 
-    // console.log(challenge);
     callback(res, challenge);
 };
 
 
 
-exports.selectchallenge = function(req, res, selection){
-    console.log(selection)
-    res.send("Needs to be implemented");
+exports.selectchallenge = function(req, res){
+    if (req.session.teamname == undefined) {
+        return res.json({redirect: '/login'});
+    }
+
+    // Find the team, add that challenge to the team.
+
+    Team.find({teamname: req.session.teamname}).exec(function (err, response) {
+        if (err) {
+            console.log("error", err);
+            return res.json({redirect: '/login'});
+        } else {
+            response.set({projects: [req.body.projectname]}); // WAIT BUT ACTUALLY I DON'T KNOW HOW TO DO THIS ANYMORE
+            console.log(response);
+            response.save(function (err) {
+                if (err) {
+                    console.log("Error adding project to team", err);
+                } else {
+                    return res.json({redirect: '/'});
+                }
+            });
+        }
+    });
+
+
+
+    // Redirect to the challenge page.
+    console.log(req.session.teamname);
+    console.log(req.body.projectname)
 };
 
 exports.submitchallenge = function(req, res){

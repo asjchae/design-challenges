@@ -29,6 +29,12 @@ get leaderboard
 
 
 
-THINGS WE NEED TO CONSIDER.
 
-Sessions?
+=======================
+
+Goals:
+
+(1) Sign up / Log in / Sessions
+(2) Add a challenge, select a challenge
+(3) Team page > contains team data, challenges
+(4) Challenge page > contains relevant challenge information, upload capabilities

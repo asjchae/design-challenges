@@ -24,4 +24,10 @@ a {
 #prompt {
   height: 220px;
   width: 446px;
+.challenge .hidden {
+	display: none;
+}
+
+#team_members_captain {
+	display: inline;
 }
