@@ -1,6 +1,6 @@
 $(function(){
-     $(".loginbutton").click( function (evt) {
-        $.post("/login", {teamdata: [teamname, pwd]}, function (data) {
+     $(".challengedrop").click( function (evt) {
+        $.post("/drop", {projectname: this.value}, function (data) {
         	console.log("meow");
         	window.location = data.redirect;
         });
