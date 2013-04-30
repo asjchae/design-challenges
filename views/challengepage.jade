@@ -1,27 +1,23 @@
 extends layout
 
 block content
+
   body
     .container-fluid
-      .row-fluid
+      .row-fluid(style="height:100px;")
         span.span6
-          h1.heading #{name}
+          h1.heading #{challenge.name}
         span.span6
-          h4.heading #{contactname}
-          h4.heading #{email}
-      .row-fluid
+          h4.heading #{challenge.contactname}
+          h4.heading #{challenge.email}
+      .row-fluid(style="height:100px;")
         span.span6
-          h5.heading Prompt: #{prompt}
+          h5.heading Prompt: #{challenge.prompt}
         span.span6
-          h5.heading Description: #{description}
-      .row-fluid
+          h5.heading Description: #{challenge.description}
+      .row-fluid(style="height:100px;")
         span.span6
           button.btn.btn-danger.btn-large.pull-right Drop
         span.span6
           button.btn.btn-success.btn-large Submit
-    name: String,
-    type: String,
-    prompt: String,
-    description: String,
-    contactname: String, 
-    email: String
+   

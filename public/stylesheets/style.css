@@ -40,3 +40,13 @@ a {
 #team_members_captain {
 	display: inline;
 }
+
+
+ .container-fluid .row-fluid .span6 .btn-danger {
+   background: #ee5f5b;
+   background-image: -moz-linear-gradient(270deg, #ee5f5b 0%, #bd362f 100%);
+   background-image: -webkit-linear-gradient(270deg, #ee5f5b 0%, #bd362f 100%);
+   background-image: -o-linear-gradient(270deg, #ee5f5b 0%, #bd362f 100%);
+   background-image: linear-gradient(180deg, #ee5f5b 0%, #bd362f 100%);
+   width: 96px;
+ }
