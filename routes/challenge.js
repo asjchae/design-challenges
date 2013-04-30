@@ -71,3 +71,8 @@ exports.selectchallenge = function(req, res){
 exports.submitchallenge = function(req, res){
     res.send("Needs to be implemented");
 };
+
+
+exports.challengepage = function(req, res){
+    res.send("Needs to be implemented");
+};
