@@ -17,6 +17,9 @@ block content
           h5.heading Description: #{challenge.description}
       .row-fluid(style="height:100px;")
         span.span6
-          button.btn.btn-danger.btn-large.pull-right Drop
+            form(method='post', action='/drop')
+              button.btn.btn-danger.btn-large.pull-right Drop
         span.span6
-          button.btn.btn-success.btn-large Submit
+
+          form(method='post', action='/submit')
+            button.btn.btn-success.btn-large Submit
