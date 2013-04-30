@@ -82,12 +82,12 @@ exports.teampage = function(req, res){
         if (err) {
             res.send("Could not find team");
         } else {
-            var myteam = data[0]
+            var myteam = data[0];
             var interests = [];
             for (var i=0; i<myteam.interests.length; i++) {
                 interests.push(myteam.interests[i].interest);
             }
-            var projects = []
+            var projects = [];
             for (var p=0; p<myteam.projects.length; p++) {
                 projects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
             }
