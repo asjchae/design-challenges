@@ -86,6 +86,8 @@ http.createServer(app).listen(app.get('port'), function(){
 function loginReq(req, res) {
   if (!req.session.teamname) {
     res.redirect('/');
+  } else {
+    return;
   }
 }
 
