@@ -6,3 +6,7 @@
 exports.index = function(req, res){
   res.render('index', { title: 'Team Up', page: '' });
 };
+
+exports.about = function(req, res) {
+	res.render('about', {title: 'About', page:'about'});
+}
