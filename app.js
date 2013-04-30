@@ -38,6 +38,8 @@ app.configure('development', function(){
 app.get('/', routes.index);
 
 
+
+
 // Authentication.
 app.get('/login', team.login);
 app.post('/login', team.loginpost);
