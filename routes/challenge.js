@@ -75,6 +75,7 @@ exports.submitchallenge = function(req, res){
 
 exports.challengepage = function(req, res){
     var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
+        console.log(data);
         if (err) {
             res.send("Could not find challenge");
         } else {
