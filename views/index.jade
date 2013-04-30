@@ -2,4 +2,7 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+  form(action='/login', method='get')
+    input(type='submit', value='Log In')
+  form(action='/signup', method='get')
+    input(type='submit', value='Sign Up')

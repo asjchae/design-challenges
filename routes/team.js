@@ -97,5 +97,5 @@ exports.leaderboard = function(req, res){
 // Sessions
 function login(req, res, team) {
     req.session.teamname = req.body.teamname;
-    return res.redirect('/');
+    return res.redirect('/challengebrowser');
 }
