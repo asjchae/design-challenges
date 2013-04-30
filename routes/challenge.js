@@ -74,5 +74,12 @@ exports.submitchallenge = function(req, res){
 
 
 exports.challengepage = function(req, res){
-    res.send("Needs to be implemented"+ req.params.selected);
+    var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
+        if (err) {
+            res.send("Could not find challenge");
+        } else {
+            res.render('challengepage', {title: req.params.selected, challenge: data});
+        }
+    });
+
 };
