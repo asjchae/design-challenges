@@ -47,7 +47,7 @@ function challengepacker(data, res, callback) {
 
 exports.selectchallenge = function(req, res){
     if (req.session.teamname == undefined) {
-        return res.redirect('/login');
+        return res.redirect('/login'); // LOOK IT DOESN'T WORK HERE
     }
     console.log(req.session.teamname);
     console.log(req.body.projectname)
