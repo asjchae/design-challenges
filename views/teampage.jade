@@ -2,7 +2,7 @@ extends layout
 
 block content
     br
-    |Team name: #{teamname}     
+    h5 Team name: #{teamname}     
     br
     |Interests: 
     each int, i in interests
@@ -16,4 +16,6 @@ block content
     br
     |Members: 
     each mem, m in members
-      | #{members.name}
+      | #{mem.name} 
+      if (mem == members)
+      | 

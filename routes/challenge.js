@@ -4,7 +4,7 @@ var  Team = require('../models/teammodel')
 
 
 exports.addchallenge = function(req, res){
-    res.render('addchallenge', {title: "Add Challenge"});
+    res.render('addchallenge', {title: "Add Challenge", page:'add'});
 };
 
 exports.addchallengepost = function(req, res){
@@ -28,7 +28,7 @@ exports.challengebrowser = function(req, res){
             res.send("Could not find all challenges");
         } else {
             challengepacker(data, res, function (res, challenge) {
-                res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge});
+                res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge, page: 'browser'});
             })
         }
     });
@@ -79,8 +79,7 @@ exports.challengepage = function(req, res){
         if (err) {
             res.send("Could not find challenge");
         } else {
-            res.render('challengepage', {title: req.params.selected, challenge: data});
+            res.render('challengepage', {title: req.params.selected, challenge: data, page: 'challenge'});
         }
     });
-
 };

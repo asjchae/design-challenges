@@ -14,17 +14,36 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='/challengebrowser') Yes
+          a.brand(href='/challengebrowser') Tup
           .nav-collapse.collapse
             ul.nav
-              li.active
-                a(href='/challengebrowser') Challenge Browser
-              li
-                a(href='/teampage') My Team 
-              li
-                a(href='/addchallenge') Add a Challenge
-              li
-                a(href='/') About Yes
+              if (page == 'browser')
+                li.active
+                  a.bar(href='/challengebrowser') Challenge Browser
+              else      
+                li
+                  a.bar(href='/challengebrowser') Challenge Browser
+              if (page == 'team')
+                li.active
+                  a.bar(href='/teampage') My Team 
+              else      
+                li
+                  a.bar(href='/teampage') My Team 
+              if (page == 'add')
+                li.active
+                  a.bar(href='/addchallenge') Add a Challenge
+              else      
+                li
+                  a.bar(href='/addchallenge') Add a Challenge
+              //- if (page == 'challenge')
+              //-   li.active
+              //-     a.bar #{title}
+              if (page == 'about')
+                li.active
+                  a.bar(href='/about') About Tup
+              else      
+                li
+                  a.bar(href='/about') About Tup
                
     .container(id='page')
       block content 

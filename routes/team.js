@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt')
 
 // Login page.
 exports.login = function(req, res) {
-    res.render('login', {title: "Log In"});
+    res.render('login', {title: "Log In", page: ''});
 };
 
 // Login post.
@@ -28,7 +28,7 @@ exports.loginpost = function(req, res) {
 
 // Sign up page.
 exports.signup = function(req, res) {
-    res.render('signup', {title: "Sign Up"});
+    res.render('signup', {title: "Sign Up", page: ''});
 };
 
 
@@ -91,7 +91,7 @@ exports.teampage = function(req, res){
             for (var p=0; p<myteam.projects.length; p++) {
                 projects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
             }
-            res.render('teampage', {title: "Team Page", teamname:myteam.teamname, projects:projects, interests:interests, members: myteam.members, captain: myteam.captain});
+            res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname, projects:projects, interests:interests, members: myteam.members, captain: myteam.captain});
         }
     });
 };
