@@ -52,30 +52,27 @@ exports.selectchallenge = function(req, res){
 
     // Find the team, add that challenge to the team.
 
-    Team.find({teamname: req.session.teamname}).exec(function (err, response) {
-        if (err) {
-            console.log("error", err);
-            return res.json({redirect: '/login'});
-        } else {
-            response.set({projects: [req.body.projectname]}); // WAIT BUT ACTUALLY I DON'T KNOW HOW TO DO THIS ANYMORE
-            console.log(response);
-            response.save(function (err) {
-                if (err) {
-                    console.log("Error adding project to team", err);
-                } else {
-                    return res.json({redirect: '/'});
-                }
-            });
+    Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
+        var teamprojects = response.projects;
+        for (var i=0; i<teamprojects.length; i++) {
+            if (teamprojects[i] == req.body.projectname) {
+                // Redirect to the challenge page.
+                return res.json({redirect: '/challengepage/' + req.body.projectname});
+            }
         }
+        teamprojects.push(req.body.projectname);
+        Team.update({teamname: req.session.teamname}, {projects: teamprojects}, {upsert: true}, function (err) {
+            // Redirect to the challenge page.
+            return res.json({redirect: '/'});
+        });
     });
-
-
-
-    // Redirect to the challenge page.
-    console.log(req.session.teamname);
-    console.log(req.body.projectname)
 };
 
 exports.submitchallenge = function(req, res){
+    res.send("Needs to be implemented");
+};
+
+
+exports.challengepage = function(req, res){
     res.send("Needs to be implemented");
 };
