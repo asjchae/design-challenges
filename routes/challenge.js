@@ -17,7 +17,7 @@ exports.addchallengepost = function(req, res){
             console.log("Problem signing team up", err);
             res.send("Wow there friend, you may need to slow down!");
         } else {
-            res.send("Your challenge is added! " + req.body.name + "!");
+            res.redirect('/challengebrowser');
         }
     });
 };
