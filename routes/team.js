@@ -84,8 +84,11 @@ exports.teampage = function(req, res){
             for (var i=0; i<myteam.interests.length; i++) {
                 interests.push(myteam.interests[i].interest);
             }
-            console.log(interests);
-            res.render('teampage', {title: "Team Page", teamname:myteam.teamname, projects:myteam.projects, interests:interests, members: myteam.members, captain: myteam.captain});
+            var projects = []
+            for (var p=0; p<myteam.projects.length; p++) {
+                projects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
+            }
+            res.render('teampage', {title: "Team Page", teamname:myteam.teamname, projects:projects, interests:interests, members: myteam.members, captain: myteam.captain});
         }
     });
 };

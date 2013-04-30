@@ -4,12 +4,16 @@ block content
     br
     |Team name: #{teamname}     
     br
-
-    each interest, i in interests
-      interest
+    |Interests: 
+    each int, i in interests
+      | #{int} 
     br
-    |Current projects: #{projects} 
+    |Current projects: 
+    each proj, p in projects
+      a(href='#{proj.url}') #{proj.proj}   
     br
-    |Captain: #{captain}    
+    |Captain: #{captain.name}    
     br
-    |Members: #{members}
+    |Members: 
+    each mem, m in members
+      | #{members.name}
