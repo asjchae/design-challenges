@@ -83,3 +83,20 @@ exports.challengepage = function(req, res){
         }
     });
 };
+
+exports.drop = function(req, res) {
+    if (req.session.teamname == undefined) {
+        return res.json({redirect: '/login'});
+    }
+    Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
+        var teamprojects = response.projects;
+        for (var i=0; i<teamprojects.length; i++) {
+            if (teamprojects[i] == req.body.projectname) {
+                teamprojects.splice(i);
+            }
+        }
+        Team.update({teamname: req.session.teamname}, {projects: teamprojects}, {upsert: true}, function (err) {
+            return res.json({redirect: '/challengebrowser'});
+        });
+    });
+};

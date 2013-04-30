@@ -56,6 +56,7 @@ app.post('/addchallenge', challenge.addchallengepost);
 
 app.get('/challengebrowser', challenge.challengebrowser);
 
+app.post('/drop', challenge.drop);
 
 app.post('/selectchallenge', challenge.selectchallenge);
 
