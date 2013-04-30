@@ -57,7 +57,8 @@ exports.signuppost = function(req, res) {
                         members: members,
                         interests: interests
                         });
-                    console.log(team)
+                    req.session.teamname=req.body.teamname
+                    console.log(req.session)
                     team.save(function (err) {
                         if (err) {
                             console.log("Problem signing team up", err);
@@ -74,7 +75,14 @@ exports.signuppost = function(req, res) {
 };
 
 exports.teampage = function(req, res){
-    res.send("Needs to be implemented");
+    var team = Team.find({teamname:req.session.teamname}).exec(function (err, data) {
+        if (err) {
+            res.send("Could not find team");
+        } else {
+            var myteam = data[0]
+            res.render('teampage', {title: "Team Page", teamname:myteam.teamname, projects:myteam.projects, interests:myteam.interests, members: myteam.members, captain: myteam.captain});
+        }
+    });
 };
 
 exports.leaderboard = function(req, res){

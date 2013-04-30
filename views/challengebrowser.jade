@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    //- script(src='/javascripts/challengeselect.js')
+    script(src='/javascripts/challengeselect.js')
     each challenge, i in challengepack
         //- form(method='post', action='/selectchallenge/'+challenge.name)
         //-     h4(value=challenge.name) #{challenge.name}
