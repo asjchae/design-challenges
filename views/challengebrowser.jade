@@ -3,22 +3,15 @@ extends layout
 block content
     //- script(src='/javascripts/challengeselect.js')
     each challenge, i in challengepack
-        //- form(method='post', action='/selectchallenge/'+challenge.name)
-        //-     h4(value=challenge.name) #{challenge.name}
-        //-     | Type: #{challenge.type}
-        //-     br
-        //-     | Prompt #{challenge.prompt}
-        //-     br
-        //-     | Description #{challenge.description}
-        //-     br
-        //-     button.challengeselect(value=challenge.name)  Select
-        div.challenge
-            h4 #{challenge.name}
-            | Type: #{challenge.type}
-            br
-            | Prompt:  #{challenge.prompt}
-            div.hidden
+        form(method='post', action='/selectchallenge/'+challenge.name)
+            
+            div.challenge
+                h4 #{challenge.name}
+                | Type: #{challenge.type}
                 br
-                | Description: #{challenge.description}
-                br
-                button.challengeselect(value=challenge.name)  Select
+                | Prompt:  #{challenge.prompt}
+                div.hidden
+                    br
+                    | Description: #{challenge.description}
+                    br
+                    button.challengeselect(value=challenge.name)  Select
