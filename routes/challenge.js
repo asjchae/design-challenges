@@ -47,8 +47,31 @@ function challengepacker(data, res, callback) {
 
 exports.selectchallenge = function(req, res){
     if (req.session.teamname == undefined) {
-        return res.redirect('/login'); // LOOK IT DOESN'T WORK HERE
+        return res.json({redirect: '/login'});
     }
+
+    // Find the team, add that challenge to the team.
+
+    Team.find({teamname: req.session.teamname}).exec(function (err, response) {
+        if (err) {
+            console.log("error", err);
+            return res.json({redirect: '/login'});
+        } else {
+            response.set({projects: [req.body.projectname]}); // WAIT BUT ACTUALLY I DON'T KNOW HOW TO DO THIS ANYMORE
+            console.log(response);
+            response.save(function (err) {
+                if (err) {
+                    console.log("Error adding project to team", err);
+                } else {
+                    return res.json({redirect: '/'});
+                }
+            });
+        }
+    });
+
+
+
+    // Redirect to the challenge page.
     console.log(req.session.teamname);
     console.log(req.body.projectname)
 };
