@@ -47,7 +47,7 @@ app.post('/login', team.loginpost);
 app.get('/signup', team.signup);
 app.post('/signup', team.signuppost);
 
-app.get('/teampage', loginReq, team.teampage);
+app.get('/teampage', team.teampage);
 
 app.get('/leaderboard', team.leaderboard);
 
@@ -82,16 +82,3 @@ app.get('/challenges/delete', dbmanage.deletechallenges);
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
-
-function loginReq(req, res) {
-  if (!req.session.teamname) {
-    res.redirect('/');
-  } else {
-    return;
-  }
-}
-
-// function login(req, res, team) {
-//     req.session.teamname = req.body.teamname;
-//     return res.redirect('/challengebrowser');
-// }

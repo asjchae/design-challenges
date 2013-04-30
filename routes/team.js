@@ -75,6 +75,9 @@ exports.signuppost = function(req, res) {
 };
 
 exports.teampage = function(req, res){
+    if (!req.session.teamname) {
+        res.redirect('/');
+    }
     var team = Team.find({teamname:req.session.teamname}).exec(function (err, data) {
         if (err) {
             res.send("Could not find team");
