@@ -4,7 +4,7 @@ var  Team = require('../models/teammodel')
 
 
 exports.addchallenge = function(req, res){
-    res.render('addchallenge', {title: "Log In"});
+    res.render('addchallenge', {title: "Add Challenge"});
 };
 
 exports.addchallengepost = function(req, res){
