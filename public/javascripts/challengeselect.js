@@ -4,11 +4,16 @@ $(function(){
         	window.location = data.redirect;
         });
      });
-     $(".challenge").mouseover( function (evt) {
+     $(".challenge").hover( function (evt) {
      	$(evt.target).find(".hidden").show()
      })
-     // $(".challenge").mouseout( function (evt) {
-     // 	$(evt.target).find(".hidden").hide()
-     // })
+
+     $(".challenge").mouseleave( function (evt) {
+        $(evt.target).find(".hidden").hide()
+     })
+
+     $(".hidden").mouseleave( function (evt) {
+        $(evt.target).find(".hidden").hide()
+     })
 })
 
