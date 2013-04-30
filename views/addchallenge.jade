@@ -1,39 +1,29 @@
 extends layout
 
 block content
-  form(method='post', action='/addchallenge', id='addchallenge')
+    .row-fluid
+        span.span6.span6-1
+            h2 Add a Challenge.
+            form(method='post', action='/addchallenge', id='addchallenge')
+      
+                h5.heading Project Name:
+                input#name.textinput(type='text', name='name', placeholder='Name')
+                h5.heading Type:
+                select#type(name='type')
+                  option(value='Fun') Fun
+                  option(value='Programming') Programming
+                  option(value='Writing') Writing
+                  option(value='Mechanical Design') Mechanical Design
+                  option(value='Politics') Politics
+                h5.heading Describe the background situation:
+                textarea#description(name='description', placeholder='Description ')
+                h5.heading Give the user a prompt to describe the problem:
+                textarea#prompt(name='prompt', placeholder='Prompt')
+                h5.heading Contact Name:
+                input#contactname.textinput(type='text', placeholder='Your name', name='contactname')
+                h5.heading Contact Email:
+                input#email.textinput(type='email', placeholder='Your email', name='email')
+                input#submit( type="submit", class="btn pull-right btn-success btn-large")    Submit
+                //- input(type='submit', value='Submit')
 
-
-    | Project Name:
-    input(type='text', name='name', id='name')
-    br
-
-    | Type:
-    select(multiple='multiple', name='type')
-        option  Fun 
-        option  Coding 
-        option  Politics 
-        option  Design 
-        option  Art
-        option  Math 
-    br    
-
-
-    | Prompt:
-    textarea(rows=10, columns=30, name='prompt', id='prompt')
-    br
-
-    | Description:
-    textarea(rows=10, columns=30,  name='description', id='description')
-    br
-
-    | Contact name:
-    input(type='text', name='contactname', id='contactname')
-    br
-
-
-    | Contact email:
-    input(type='email', name='email', id='email')
-    br
-
-    input(type='submit', value='Submit')
+        span.span6

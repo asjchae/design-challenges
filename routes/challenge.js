@@ -41,13 +41,14 @@ function challengepacker(data, res, callback) {
     for (var i = 0; i<data.length; i++) {
         challenge.push(data[i]);
     } 
-    console.log(challenge);
+    // console.log(challenge);
     callback(res, challenge);
 };
 
 
 
-exports.selectchallenge = function(req, res){
+exports.selectchallenge = function(req, res, selection){
+    console.log(selection)
     res.send("Needs to be implemented");
 };
 

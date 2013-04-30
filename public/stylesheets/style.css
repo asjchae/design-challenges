@@ -6,3 +6,22 @@ body {
 a {
   color: #00B7FF;
 }
+
+.row-fluid {
+  width: 940px;
+  height: 880px;
+}
+.row-fluid .span6.span6-1 {
+  width: 460px;
+}
+#type {
+  width: 200px;
+}
+#description {
+  height: 220px;
+  width: 446px;
+}
+#prompt {
+  height: 220px;
+  width: 446px;
+}
