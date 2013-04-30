@@ -1,5 +1,15 @@
 extends layout
 
 block content
-    |hi there
-    teamname
+    br
+    |Team name: #{teamname}     
+    br
+
+    each interest, i in interests
+      interest
+    br
+    |Current projects: #{projects} 
+    br
+    |Captain: #{captain}    
+    br
+    |Members: #{members}

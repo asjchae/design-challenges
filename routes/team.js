@@ -80,7 +80,12 @@ exports.teampage = function(req, res){
             res.send("Could not find team");
         } else {
             var myteam = data[0]
-            res.render('teampage', {title: "Team Page", teamname:myteam.teamname, projects:myteam.projects, interests:myteam.interests, members: myteam.members, captain: myteam.captain});
+            var interests = [];
+            for (var i=0; i<myteam.interests.length; i++) {
+                interests.push(myteam.interests[i].interest);
+            }
+            console.log(interests);
+            res.render('teampage', {title: "Team Page", teamname:myteam.teamname, projects:myteam.projects, interests:interests, members: myteam.members, captain: myteam.captain});
         }
     });
 };
