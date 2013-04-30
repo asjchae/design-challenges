@@ -63,7 +63,7 @@ exports.selectchallenge = function(req, res){
         teamprojects.push(req.body.projectname);
         Team.update({teamname: req.session.teamname}, {projects: teamprojects}, {upsert: true}, function (err) {
             // Redirect to the challenge page.
-            return res.json({redirect: '/'});
+            return res.json({redirect: '/challengepage/' + req.body.projectname});
         });
     });
 };
@@ -74,5 +74,5 @@ exports.submitchallenge = function(req, res){
 
 
 exports.challengepage = function(req, res){
-    res.send("Needs to be implemented");
+    res.send("Needs to be implemented"+ req.params.selected);
 };
