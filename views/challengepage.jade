@@ -1,7 +1,9 @@
 extends layout
 
 block content
-
+  script(src='/javascripts/challengeselect.js')
+  script(src='/javascripts/challengedrop.js')
+    
   body
     .container-fluid
       .row-fluid(style="height:100px;")
@@ -17,8 +19,7 @@ block content
           h5.heading Description: #{challenge.description}
       .row-fluid(style="height:100px;")
         span.span6
-            form(method='post', action='/drop')
-              button.btn.btn-danger.btn-large.pull-right Drop
+            button.challengedrop.btn.btn-danger.btn-large.pull-right(value=challenge.name) Drop
         span.span6
 
           form(method='get', action='/submitchallenge')

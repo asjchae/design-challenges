@@ -12,7 +12,8 @@ var express = require('express')
   , team = require('./routes/team')
   , bcrypt = require('bcrypt')
   , mongoose = require('mongoose')
-  , dbmanage = require('./routes/dbmanage');
+  , dbmanage = require('./routes/dbmanage')
+  , index = require('./routes/index');
 
 var app = express();
 mongoose.connect(process.env.MONGOLAB_URI || 'localhost/designchallenges');
@@ -56,9 +57,11 @@ app.post('/addchallenge', challenge.addchallengepost);
 
 app.get('/challengebrowser', challenge.challengebrowser);
 
+app.post('/drop', challenge.drop);
 
 app.post('/selectchallenge', challenge.selectchallenge);
 
+app.get('/about', index.about);
 
 // app.post('/selectchallenge/:selected', function(req,res){
 //   challenge.selectchallenge(req, res, req.params.selected)

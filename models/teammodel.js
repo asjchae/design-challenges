@@ -6,6 +6,9 @@ var teamschema = mongoose.Schema({
     captain: {name: String, email: String},
     members: [{name: String, email: String}],
     score: Number,
+    prizescore: Number,
+    // Update this later with an object type. 
+    createdchallenges: [{name: String, prizegiven: Boolean}],
     interests: [{interest: String, completions: Number}], 
     picture: String,
     // projects: [{projectname: String}]

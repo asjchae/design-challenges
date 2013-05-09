@@ -12,6 +12,8 @@ exports.loginpost = function(req, res) {
     var team = Team.findOne({teamname: req.body.teamname}).exec(function (err, teamdata) {
         if (err) {
             return console.log("Could not find team name", err);
+        } else if (!teamdata) {
+            res.redirect('/signup');
         } else {
             bcrypt.compare(req.body.pwd, teamdata.password, function (err, boolean) {
                 if (boolean == true) {

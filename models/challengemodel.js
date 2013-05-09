@@ -6,7 +6,10 @@ var challengeschema = mongoose.Schema({
     prompt: String,
     description: String,
     contactname: String, 
-    email: String
+    email: String,
+    enddate: Date,
+    prize:  String,
+    prizerecieved: Boolean  
 
 });
 var Challenge = mongoose.model('Challenge', challengeschema);
