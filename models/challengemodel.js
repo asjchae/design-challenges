@@ -5,8 +5,7 @@ var challengeschema = mongoose.Schema({
     type: String,
     prompt: String,
     description: String,
-    contactname: String, 
-    email: String
+    createdby: String
 
 });
 var Challenge = mongoose.model('Challenge', challengeschema);
