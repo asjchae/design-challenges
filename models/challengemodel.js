@@ -5,9 +5,11 @@ var challengeschema = mongoose.Schema({
     type: String,
     prompt: String,
     description: String,
-    createdby: String
+    createdby: String,
+    prize: String
 
 });
+
 var Challenge = mongoose.model('Challenge', challengeschema);
 
 module.exports = Challenge;

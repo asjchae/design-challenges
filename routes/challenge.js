@@ -17,7 +17,7 @@ exports.addchallengepost = function(req, res){
     // Save the challenge.
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
-                        contactname: req.body.contactname, email: req.body.email});
+                        createdby: req.session.teamname, prize: req.body.prize});
     challenge.save(function (err) {
         if (err) {
             console.log("Problem signing team up", err);

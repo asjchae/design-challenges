@@ -10,14 +10,15 @@ block content
         span.span6
           h1.heading #{challenge.name}
         span.span6
-          //- h4.heading #{challenge.contactname} // This needs to change to contain the team name.
-          //- h4.heading #{challenge.email}
+          h4.heading Created by: #{challenge.createdby}
       .row-fluid(style="height:100px;")
         span.span6
           h5.heading Prompt: #{challenge.prompt}
         span.span6
           h5.heading Description: #{challenge.description}
       .row-fluid(style="height:100px;")
+        span.span6
+          h5.heading Prize: #{challenge.prize}
         span.span6
             button.challengedrop.btn.btn-danger.btn-large.pull-right(value=challenge.name) Drop
         span.span6
