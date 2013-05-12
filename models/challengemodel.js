@@ -5,13 +5,15 @@ var challengeschema = mongoose.Schema({
     type: String,
     prompt: String,
     description: String,
-    contactname: String, 
-    email: String,
-    enddate: Date,
-    prize:  String,
     prizerecieved: Boolean  
 
+    createdby: String,
+    prize: String,
+    status: String,
+    datecreated: String,
+    dateclosed: String
 });
+
 var Challenge = mongoose.model('Challenge', challengeschema);
 
 module.exports = Challenge;

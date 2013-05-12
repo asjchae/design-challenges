@@ -12,6 +12,10 @@ block content
     each proj, p in projects
       a(href='#{proj.url}') #{proj.proj}   
     br
+    |Challenges created:
+    each chal, c in challengescreated
+      a(href='#{chal.url}') #{chal.chal}
+    br
     |Captain: #{captain.name}    
     br
     |Members: 

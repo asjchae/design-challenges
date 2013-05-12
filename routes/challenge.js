@@ -13,19 +13,42 @@ exports.addchallenge = function(req, res){
 };
 
 exports.addchallengepost = function(req, res){
-    console.log(req.body) 
+
+    // Check to see if logged in.
+    if (req.session.teamname == undefined) {
+        return res.redirect('/login');
+    };
+    
+    // Save the challenge.
+
+    var date = new Date();
+    var month = date.getMonth() + 1;
+    var number = date.getDate();
+    var year = date.getFullYear();
+    var d = month + "/" + number + "/" + year;
+
+
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
-                        contactname: req.body.contactname, email: req.body.email});
+                        createdby: req.session.teamname, prize: req.body.prize, status: "Open", datecreated: d});
     challenge.save(function (err) {
         if (err) {
             console.log("Problem signing team up", err);
-            res.send("Wow there friend, you may need to slow down!");
+            res.redirect('/addchallenge');
         } else {
-            res.redirect('/challengebrowser');
-        }
+            // Add the challenge to the team that created it.
+            Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
+                var createdchals = response.challengescreated;
+                createdchals.push(req.body.name);
+                Team.update({teamname: req.session.teamname}, {challengescreated: createdchals}, {upsert: true}, function (err) {
+                    return res.redirect('/challengepage/' + req.body.name);
+                });
+            });
+        };
     });
 };
+
+
 
 exports.challengebrowser = function(req, res){
     var allChallenges = Challenge.find({}).exec(function (err, data) {

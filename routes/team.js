@@ -93,7 +93,11 @@ exports.teampage = function(req, res){
             for (var p=0; p<myteam.projects.length; p++) {
                 projects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
             }
-            res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname, projects:projects, interests:interests, members: myteam.members, captain: myteam.captain});
+            var challengescreated = [];
+            for (var c=0; c<myteam.challengescreated.length; c++) {
+                challengescreated.push({chal: myteam.challengescreated[c], url:'/challengepage/'+myteam.challengescreated[c]});
+            }
+            res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname, challengescreated: challengescreated, projects:projects, interests:interests, members: myteam.members, captain: myteam.captain});
         }
     });
 };
