@@ -7,23 +7,24 @@ block content
             form(method='post', action='/addchallenge', id='addchallenge')
       
                 h5.heading Project Name:
-                input#name.textinput(type='text', name='name', placeholder='Name')
+                input#name.textinput(type='text', name='name', placeholder='Name', required)
                 h5.heading Type:
-                select#type(name='type')
+                select#type(name='type', required)
                   option(value='Fun') Fun
                   option(value='Programming') Programming
                   option(value='Writing') Writing
                   option(value='Mechanical Design') Mechanical Design
                   option(value='Politics') Politics
                 h5.heading Describe the background situation:
-                textarea#description(name='description', placeholder='Description ')
+                textarea#description(name='description', placeholder='Description', required)
                 h5.heading Give the user a prompt to describe the problem:
-                textarea#prompt(name='prompt', placeholder='Prompt')
+                textarea#prompt(name='prompt', placeholder='Prompt', required)
                 h5.heading Prize:
-                textarea#prize(name='prize', placeholder='Prize')
+                textarea#prize(name='prize', placeholder='Prize', required)
+                input#finishdate(type='date', name='finishdate', required)
+                input(type='file', name='inputfile')
+                
                 input#submit( type="submit", class="btn pull-right btn-success btn-large")    Submit
-                input(type='date')
-                input(type='file')
                 
                 //- input(type='submit', value='Submit')
 

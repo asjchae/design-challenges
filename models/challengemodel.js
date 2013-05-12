@@ -5,7 +5,7 @@ var challengeschema = mongoose.Schema({
     type: String,
     prompt: String,
     description: String,
-    prizerecieved: Boolean  
+    prizerecieved: Boolean, 
 
     createdby: String,
     prize: String,
