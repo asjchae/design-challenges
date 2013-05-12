@@ -3,93 +3,93 @@ extends layout
 block content
   h1= title
 
-  .row-fluid
-        span.span6.span6-1
-            h2 Add a Challenge.
-            form(method='post', action='/addchallenge', id='addchallenge')
+  //- .row-fluid
+  //-       span.span6.span6-1
+  //-           h2 Add a Challenge.
+  //-           form(method='post', action='/addchallenge', id='addchallenge')
       
-                h5.heading Teamname:
-                input#teamname.textinput(type='text', name='teamname', placeholder='Teamname')
-                br
-                h5.heading Password:
-                input(type='password', name='pwd', id='pwd')
-                br
-                h5.heading Captain:
-                input#captain.textinput(type='text', name='captain', placeholder='Captain')
-                br
-                h5.heading Captain's Email:
-                input#captainemail.textinput(type='text', name='captainemail', placeholder='Captain@Captain.com')
-                br
-                h5.heading Type:
-                select#type(name='type')
-                  option(value='Fun') Fun
-                  option(value='Programming') Programming
-                  option(value='Writing') Writing
-                  option(value='Mechanical Design') Mechanical Design
-                  option(value='Politics') Politics
-                h5.heading Describe the background situation:
-                textarea#description(name='description', placeholder='Description ')
-                h5.heading Give the user a prompt to describe the problem:
-                textarea#prompt(name='prompt', placeholder='Prompt')
-                h5.heading Contact Name:
-                input#contactname.textinput(type='text', placeholder='Your name', name='contactname')
-                h5.heading Contact Email:
-                input#email.textinput(type='email', placeholder='Your email', name='email')
-                input#submit( type="submit", class="btn pull-right btn-success btn-large")    Submit
-                //- input(type='submit', value='Submit')
+  //-               h5.heading Teamname:
+  //-               input#teamname.textinput(type='text', name='teamname', placeholder='Teamname')
+  //-               br
+  //-               h5.heading Password:
+  //-               input(type='password', name='pwd', id='pwd')
+  //-               br
+  //-               h5.heading Captain:
+  //-               input#captain.textinput(type='text', name='captain', placeholder='Captain')
+  //-               br
+  //-               h5.heading Captain's Email:
+  //-               input#captainemail.textinput(type='text', name='captainemail', placeholder='Captain@Captain.com')
+  //-               br
+  //-               h5.heading Type:
+  //-               select#type(name='type')
+  //-                 option(value='Fun') Fun
+  //-                 option(value='Programming') Programming
+  //-                 option(value='Writing') Writing
+  //-                 option(value='Mechanical Design') Mechanical Design
+  //-                 option(value='Politics') Politics
+  //-               h5.heading Describe the background situation:
+  //-               textarea#description(name='description', placeholder='Description ')
+  //-               h5.heading Give the user a prompt to describe the problem:
+  //-               textarea#prompt(name='prompt', placeholder='Prompt')
+  //-               h5.heading Contact Name:
+  //-               input#contactname.textinput(type='text', placeholder='Your name', name='contactname')
+  //-               h5.heading Contact Email:
+  //-               input#email.textinput(type='email', placeholder='Your email', name='email')
+  //-               input#submit( type="submit", class="btn pull-right btn-success btn-large")    Submit
+  //-               //- input(type='submit', value='Submit')
 
-        span.span6
+  //-       span.span6
 
-    captain: {name: String, email: String},
-    members: [{name: String, email: String}],
-    score: Number,
-    interests: [{interest: String, completions: Number}], 
-    picture: String,
-    projects: [{projectname: String, }]
-  //- form(method='post', action='/signup', id='newteam')
-  //-   | Username:
-  //-   input(type='text', name='teamname', id='teamname')
-  //-   br
-  //-   | Password:
-  //-   input(type='password', name='pwd', id='pwd')
-  //-   br
+  //-   captain: {name: String, email: String},
+  //-   members: [{name: String, email: String}],
+  //-   score: Number,
+  //-   interests: [{interest: String, completions: Number}], 
+  //-   picture: String,
+  //-   projects: [{projectname: String, }]
+  form(method='post', action='/signup', id='newteam')
+    | Username:
+    input(type='text', name='teamname', id='teamname')
+    br
+    | Password:
+    input(type='password', name='pwd', id='pwd')
+    br
     
-  //-   | Team Captain: 
-  //-   br
-  //-   input(type='text', 'name = captain', id='captain')   
-  //-   input(type='text', name = 'emailcaptain', id='emailcaptain')
-  //-   br
+    | Team Captain: 
+    br
+    input(type='text', 'name = captain', id='captain')   
+    input(type='text', name = 'emailcaptain', id='emailcaptain')
+    br
 
-  //-   | Team Members:
-  //-   br
-  //-   input(type='text', name='member', id='member1')
-  //-   input(type='text', name='emailmember', id='emailmember')
-  //-   br
-  //-   input(type='text', name='member', id='member1')
-  //-   input(type='text', name='emailmember', id='emailmember')
-  //-   br
-  //-   input(type='text', name='member', id='member1')
-  //-   input(type='text', name='emailmember', id='emailmember')
-  //-   br
-  //-   | Interests:
-  //-   br
-  //-   |Fun 
-  //-   input(type='checkbox', name="interests", value="Fun")
-  //-   br
-  //-   |Coding 
-  //-   input(type="checkbox", name="interests", value="Coding")
-  //-   br
-  //-   |Politics 
-  //-   input(type="checkbox", name="interests", value="Politics") 
-  //-   br
-  //-   |Design 
-  //-   input(type="checkbox", name="interests", value="Design") 
-  //-   br
-  //-   |Art 
-  //-   input(type="checkbox", name="interests", value="Art") 
-  //-   br
-  //-   |Math 
-  //-   input(type="checkbox", name="interests", value="Math") 
+    | Team Members:
+    br
+    input(type='text', name='member', id='member1')
+    input(type='text', name='emailmember', id='emailmember')
+    br
+    input(type='text', name='member', id='member1')
+    input(type='text', name='emailmember', id='emailmember')
+    br
+    input(type='text', name='member', id='member1')
+    input(type='text', name='emailmember', id='emailmember')
+    br
+    | Interests:
+    br
+    |Fun 
+    input(type='checkbox', name="interests", value="Fun")
+    br
+    |Coding 
+    input(type="checkbox", name="interests", value="Coding")
+    br
+    |Politics 
+    input(type="checkbox", name="interests", value="Politics") 
+    br
+    |Design 
+    input(type="checkbox", name="interests", value="Design") 
+    br
+    |Art 
+    input(type="checkbox", name="interests", value="Art") 
+    br
+    |Math 
+    input(type="checkbox", name="interests", value="Math") 
 
-  //-   br    
-  //-   input(type='submit', value='Submit')
+    br    
+    input(type='submit', value='Submit')

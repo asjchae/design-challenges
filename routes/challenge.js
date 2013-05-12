@@ -33,9 +33,11 @@ exports.addchallengepost = function(req, res){
     var year = date.getFullYear();
     var d = year + "/" + month + "/" + number;
     var finishDate = req.body.finishdate.replace("-", '/').replace("-", '/')
+    
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
                         createdby: req.session.teamname, prize: req.body.prize, status: "Open", datecreated: d, dateclosed: finishDate});
+    
     challenge.save(function (err) {
         if (err) {
             console.log("Problem signing team up", err);
