@@ -73,12 +73,15 @@ exports.challengebrowser = function(req, res){
 function challengepacker(data, res, callback) {
     var challenge = [];
     for (var i = 0; i<data.length; i++) {
-        challenge.push(data[i]);
-    } 
-    callback(res, challenge);
+        var chal = Challenge.findOne({name: data[i].name}).exec(function (err, response) {
+            // CHECK FOR OPEN/CLOSE HERE.
+            challenge.push(response);
+            if (challenge.length == data.length) {
+                callback(res, challenge);
+            }
+        });
+    }
 };
-
-
 
 exports.selectchallenge = function(req, res){
     if (req.session.teamname == undefined) {
