@@ -23,9 +23,15 @@ exports.addchallengepost = function(req, res){
 
     var date = new Date();
     var month = date.getMonth() + 1;
+    if (month.toString().length == 1) {
+        month = "0".concat(month);  
+    }
     var number = date.getDate();
+    if (number.toString().length == 1) {
+        number = "0".concat(number);
+    }
     var year = date.getFullYear();
-    var d = month + "/" + number + "/" + year;
+    var d = year + "/" + month + "/" + number;
     var finishDate = req.body.finishdate.replace("-", '/').replace("-", '/')
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
