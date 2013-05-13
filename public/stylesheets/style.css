@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 100px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -18,12 +18,17 @@ a {
 
 }
 
+.bar {
+  height: 40px;
+  padding-top: 20px;
+}
+
 .row-fluid {
   width: 940px;
   height: 880px;
 }
 .row-fluid .span6.span6-1 {
-  width: 400px;
+  width: 460px;
 }
 
 .challenge {

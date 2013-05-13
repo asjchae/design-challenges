@@ -187,8 +187,6 @@ exports.submitchallenge = function(req, res){
     });
 };
 
-<<<<<<< HEAD
-=======
 exports.pickwinner = function(req, res) {
     var winner = req.body.winner.split('_')[0];
     var winninglink = req.body.winner.split('_')[1];
@@ -268,7 +266,6 @@ exports.challengepage = function(req, res){
     });
 };
 
->>>>>>> 9d8e484028d61b860f6a784e67d7759ef3aac1e4
 exports.upload = function(request, response){
   console.log("Request handler 'upload' was called.");
 
