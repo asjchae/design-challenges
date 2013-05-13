@@ -163,9 +163,9 @@ exports.submitchallenge = function(req, res){
 };
 
 exports.pickwinner = function(req, res) {
-    console.log(req.body)
-    res.send("hi")
-    // req.session.submission
+    var winner = req.body.winner.split('_')[0];
+    var winninglink = req.body.winner.split('_')[1];
+    var challengename = req.body.winner.split('_')[2];
 };
 
 exports.challengepage = function(req, res){
@@ -192,7 +192,7 @@ exports.challengepage = function(req, res){
             if (err) {
                 res.redirect('/challengebrowser')
             } else {
-                res.render('challengecreator', {title: req.params.selected, challenge: data, page: 'challenge'});
+                res.render('challengecreator', {title: req.params.selected, submissions: data.submissions, challenge: data, page: 'challenge'});
             }
         } else {
             if (data.status == "Open") {
