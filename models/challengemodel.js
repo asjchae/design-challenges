@@ -10,8 +10,11 @@ var challengeschema = mongoose.Schema({
     createdby: String,
     prize: String,
     status: String,
-    datecreated: String,
-    dateclosed: String
+    created: String,
+    closed: String,
+    datecreated: Date,
+    dateclosed: Date
+
 });
 
 var Challenge = mongoose.model('Challenge', challengeschema);
