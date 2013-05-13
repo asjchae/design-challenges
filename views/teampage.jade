@@ -2,124 +2,76 @@ extends layout
 
 block content
     .container-fluid
-      .row-fluid
+      .row-fluid(style="height: 120px;")
         span.span6
           h2.heading Team: #{teamname} 
           h4 Interests: #{interests}
         span.span6
-          h5.heading Heading
-          h5.heading Heading
-          h5.heading Heading
-      .row-fluid
-        span.span6
-          table.table
-            thead
-              tr
-                th Column 1
-                th Column 2
-                th Column 3
-            tbody
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-        span.span6
-          table.table
-            thead
-              tr
-                th Column 1
-                th Column 2
-                th Column 3
-            tbody
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-      .row-fluid
-        span.span6
-          table.table
-            thead
-              tr
-                th Column 1
-                th Column 2
-                th Column 3
-            tbody
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-        span.span6
-          table.table
-            thead
-              tr
-                th Column 1
-                th Column 2
-                th Column 3
-            tbody
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
-              tr
-                td Text can go here
-                td Text can go here
-                td Text can go here
+          h4.heading Captain: #{captain.name}
+          h5.heading Members: #{members}
+          h5.heading Contact Email: #{captain.email}
+      .row-fluid(style="height: 120px;")
 
-    br
-    h5 Team name: #{teamname}     
-    br
-    |Interests: 
-    each int, i in interests
-      | #{int} 
-    br
-    |Current open projects: 
-    each proj, p in openprojects
-      a(href='#{proj.url}') #{proj.proj}   
-    br
-    |Current closed projects: 
-    each proj, p in closedprojects
-      a(href='#{proj.url}') #{proj.proj}   
-    br
-    |Challenges created that are open:
-    each chal, c in openchallengescreated
-      a(href='#{chal.url}') #{chal.chal}
-    br
-    |Challenges created that are closed:
-    each chal, c in closedchallengescreated
-      a(href='#{chal.url}') #{chal.chal}
-    br
-    |Captain: #{captain.name}    
-    br
-    |Members: 
-    each mem, m in members
-      | #{mem.name} 
-      if (mem == members)
-      | 
+        span.span6
+          table.table
+            thead
+              tr
+                th Open Projects
+                th Go to
+            tbody
+              each proj, p in openprojects   
+
+                tr
+                  td #{proj.proj}   
+                  td
+                    input.btn.pull-center(type='button', value="View Project", onclick="location.href=\'" + proj.url+ "\';")View
+                     
+                                //- tr
+              //-   td Text can go here
+              //-   td Text can go here
+              //-   td Text can go here
+              //- tr
+              //-   td Text can go here
+              //-   td Text can go here
+              //-   td Text can go here
+        span.span6
+          table.table
+            thead
+              tr
+                th Closed Projects
+                th Go to 
+            tbody
+              each proj, p in closedprojects
+                tr
+                  td #{proj.proj}   
+                  td
+                    input.btn.pull-center(type='button', value="View Project", onclick="location.href=\'" + proj.url+ "\';")View
+                     
+                    
+      .row-fluid
+        span.span6
+          table.table
+            thead
+              tr
+                th Open Challenges
+                th Go to 
+            tbody
+              each chal, c in openchallengescreated
+                tr
+                  td #{chal.chal}   
+                  td
+                    input.btn.pull-center(type='button', value="View Project", onclick="location.href=\'" + chal.url+ "\';")View
+                     
+        span.span6
+          table.table
+            thead
+              tr
+                th Closed Challenges
+                th Go to 
+            tbody
+              each chal, c in closedchallengescreated
+                tr
+                  td #{chal.chal}   
+                  td
+                    input.btn.pull-center(type='button', value="View Project", onclick="location.href=\'" + chal.url+ "\';")View
+                   
