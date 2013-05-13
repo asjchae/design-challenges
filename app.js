@@ -50,7 +50,9 @@ app.post('/signup', team.signuppost);
 
 app.get('/logout', team.logout);
 
+app.get('/team/:teamname', team.teamcheck);
 app.get('/teampage', team.teampage);
+//app.get('/team/:teamname', team.teampagebrowser);
 
 app.get('/leaderboard', team.leaderboard);
 

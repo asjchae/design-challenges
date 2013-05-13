@@ -12,7 +12,9 @@ block content
         span.span6
           h1.heading Status: #{challenge.status}          
         span.span6
-          h4.heading Created by: #{challenge.createdby}
+          h4.heading 
+          :markdown
+            ####Created by: [#{challenge.createdby}](/team/#{challenge.createdby})
         span.span6
           h4.heading Date Created: #{challenge.created}
         span.span6
