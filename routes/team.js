@@ -91,9 +91,6 @@ exports.teampage = function(req, res){
                 interests.push(myteam.interests[i].interest);
             }
             teamprojects(myteam, function(openprojects, closedprojects, opencreated, closedcreated) {
-                console.log("meow");
-                console.log(opencreated);
-                console.log(closedcreated);
                 res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname,
                     openchallengescreated: opencreated, closedchallengescreated: closedcreated,
                     openprojects: openprojects, closedprojects: closedprojects, interests:interests,
@@ -107,6 +104,13 @@ function teamprojects(myteam, callback) {
     var openprojects = [];
     var closedprojects = [];
     var callbacktracker = [];
+
+    if (myteam.projects.length == 0) {
+        teamchallenges(myteam, function(opencreated, closedcreated) {
+            callback(openprojects, closedprojects, opencreated, closedcreated);
+        });
+    }
+
     for (var p=0; p<myteam.projects.length; p++) {
         Challenge.findOne({name: myteam.projects[p]}).exec(function (err, response) {
             if (!response) {
@@ -164,7 +168,7 @@ function teamchallenges(myteam, callback) {
     var callbacktracker = [];
     console.log(myteam.createdchallenges);
     if (myteam.createdchallenges.length == 0) {
-        console.log("here");
+        callback(opencreated, closedcreated);
     }
     for (var c=0; c<myteam.createdchallenges.length; c++) {
         // check that the project is live
