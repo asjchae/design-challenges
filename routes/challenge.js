@@ -182,6 +182,7 @@ exports.challengepage = function(req, res){
                             console.log("Error", err);
                             res.redirect('/challengepage/' + data.name);
                         }
+                        console.log(data.submissions)
                         return res.render('challengecreator', {title: data.name, challenge: data, page: 'challenge'});
                     });
                 }
@@ -190,7 +191,11 @@ exports.challengepage = function(req, res){
             if (err) {
                 res.redirect('/challengebrowser')
             } else {
-                res.render('challengecreator', {title: req.params.selected, challenge: data, page: 'challenge'});
+                if (!data) {
+                    data = [];  
+                }
+                console.log(data.submissions)
+                res.render('challengecreator', {title: req.params.selected,sub: data.submissions, challenge: data, page: 'challenge'});
             }
         } else {
             if (data.status == "Open") {

@@ -1,6 +1,14 @@
 extends layout
 
 block content
+
+
+
+
+
+
+
+vs
   script(src='/javascripts/challengeselect.js')
   script(src='/javascripts/challengedrop.js')
     
@@ -25,12 +33,11 @@ block content
         span.span6
           h5.heading Description: #{challenge.description}
         span.span6
-          h5.heading Prize: #{challenge.prize}     
-        span.span6
-          h5.heading Submissions: #{challenge.submissions} 
+          h5.heading Prize: #{challenge.prize}          
       .row-fluid(style="height:100px;")
         span.span6
-
+          h5.heading Submissions: #{challenge.submissions}
+        
         table.table
           thead
             tr
@@ -38,21 +45,11 @@ block content
               th Submission
               th Selection
           tbody
-            tr
-              td Text can go here
-              td
-                button.btn.pull-center Button
-              td
-                button.btn.pull-center Button
-            tr
-              td Text can go here
-              td
-                button.btn.pull-center Button
-              td
-                button.btn.pull-center Button
-            tr
-              td Text can go here
-              td
-                button.btn.pull-center Button
-              td
-                button.btn.pull-center Button
+            each challenge, i in sub
+              tr
+                td challenge[1]
+                td
+                  button.btn.pull-center(href="challenge[0]") Button
+                td
+                  button.btn.pull-center Button
+              
