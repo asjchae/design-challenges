@@ -157,7 +157,7 @@ exports.submitchallenge = function(req, res){
                 console.log("Error", err);
                 res.redirect('/challengepage/' + data.name);
             }
-            return res.render('challengepage', {title: req.body.challengename, challenge: data, page: 'challenge'});
+            return res.render('challengepage', {title: req.body.challengename, status: 'open', challenge: data, page: 'challenge'});
         });
     });
 };
