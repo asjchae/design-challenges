@@ -149,15 +149,27 @@ exports.selectchallenge = function(req, res){
 };
 
 exports.submitchallenge = function(req, res){
-    console.log("Here:")
-    console.log(req.body)
-    res.render('submit', {title: "Submit Challenge", page: ''});
+
+    Challenge.findOne({name: req.body.challengename}).exec(function (err, data) {
+        var submissions = data.submissions;
+        submissions.push(req.body.submission);
+        Challenge.update({name: data.name}, {submissions: submissions}, {upsert: true}, function (err) {
+            if (err) {
+                console.log("Error", err);
+                res.redirect('/challengepage/' + data.name);
+            }
+            return res.render('challengepage', {title: req.body.challengename, challenge: data, page: 'challenge'});
+        });
+    });
 };
 
 
 exports.challengepage = function(req, res){
     var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
-        if (req.session.user == data.createdby) {
+        console.log(req.session.teamname);
+        console.log(data.createdby);
+        if (req.session.teamname == data.createdby) {
+
             if (data.status == "Open") {
                 var today = new Date();
                 var comparedate = data.dateclosed;
@@ -166,6 +178,7 @@ exports.challengepage = function(req, res){
                     Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
                         if (err) {
                             console.log("Error", err);
+                            res.redirect('/challengepage/' + data.name);
                         }
                         return res.render('challengecreator', {title: data.name, challenge: data, page: 'challenge'});
                     });
@@ -251,3 +264,4 @@ exports.checkname = function(req, res) {
         }
     });
 }
+

@@ -76,9 +76,6 @@ app.get('/about', index.about);
 // This one needs work, how do we do that thing where we we can write anything and it parses it
 app.get('/challengepage/:selected', challenge.challengepage);
 
-
-app.get('/submitchallenge', challenge.submitchallenge);
-
 app.post('/submitchallenge', challenge.submitchallenge);
 app.post('/upload', challenge.upload)
 

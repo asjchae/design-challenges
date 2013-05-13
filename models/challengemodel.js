@@ -13,7 +13,8 @@ var challengeschema = mongoose.Schema({
     created: String,
     closed: String,
     datecreated: Date,
-    dateclosed: Date
+    dateclosed: Date,
+    submissions: Array
 
 });
 
