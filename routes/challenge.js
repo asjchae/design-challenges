@@ -155,25 +155,46 @@ exports.submitchallenge = function(req, res){
 
 exports.challengepage = function(req, res){
     var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
-        console.log(data);
-        if (data.status == "Open") {
-            var today = new Date();
-            var comparedate = data.dateclosed;
+        if (req.session.user == data.createdby) {
+            if (data.status == "Open") {
+                var today = new Date();
+                var comparedate = data.dateclosed;
 
-            if (comparedate < today) {
-                Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
-                    if (err) {
-                        console.log("Error", err);
-                    }
-                    return res.render('challengepage', {title: data.name, challenge: data, page: 'challenge'});
-                });
+                if (comparedate < today) {
+                    Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
+                        if (err) {
+                            console.log("Error", err);
+                        }
+                        return res.render('challengecreator', {title: data.name, challenge: data, page: 'challenge'});
+                    });
+                }
             }
-        }
 
-        if (err) {
-            res.redirect('/challengebrowser')
+            if (err) {
+                res.redirect('/challengebrowser')
+            } else {
+                res.render('challengecreator', {title: req.params.selected, challenge: data, page: 'challenge'});
+            }
         } else {
-            res.render('challengepage', {title: req.params.selected, challenge: data, page: 'challenge'});
+            if (data.status == "Open") {
+                var today = new Date();
+                var comparedate = data.dateclosed;
+
+                if (comparedate < today) {
+                    Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
+                        if (err) {
+                            console.log("Error", err);
+                        }
+                        return res.render('challengepage', {title: data.name, challenge: data, page: 'challenge'});
+                    });
+                }
+            }
+
+            if (err) {
+                res.redirect('/challengebrowser')
+            } else {
+                res.render('challengepage', {title: req.params.selected, challenge: data, page: 'challenge'});
+            }
         }
     });
 };
