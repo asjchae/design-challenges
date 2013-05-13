@@ -188,7 +188,7 @@ exports.challengepage = function(req, res){
         console.log(data.createdby);
         if (req.session.teamname == data.createdby) {
 
-            if (data.winner) {
+            if (data.winner.length > 1) {
                 return res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
             }
 
@@ -214,7 +214,7 @@ exports.challengepage = function(req, res){
             }
         } else {
 
-            if (date.winner) {
+            if (data.winner) {
                 return res.render('challengepage', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
             }
 
