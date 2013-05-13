@@ -202,7 +202,7 @@ exports.challengepage = function(req, res){
                             console.log("Error", err);
                             res.redirect('/challengepage/' + data.name);
                         }
-                        return res.render('challengecreator', {title: data.name, challenge: data, submissions: data.submissions, page: 'challenge'});
+                        return res.render('challengecreator', {title: data.name, challenge: data, status: 'open', submissions: data.submissions, page: 'challenge'});
                     });
                 }
             }
@@ -210,7 +210,7 @@ exports.challengepage = function(req, res){
             if (err) {
                 res.redirect('/challengebrowser')
             } else {
-                res.render('challengecreator', {title: req.params.selected, submissions: data.submissions, challenge: data, page: 'challenge'});
+                res.render('challengecreator', {title: req.params.selected, submissions: data.submissions, status: 'open', challenge: data, page: 'challenge'});
             }
         } else {
             if (data.status == "Open") {
