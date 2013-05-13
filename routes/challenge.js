@@ -19,7 +19,7 @@ exports.addchallengepost = function(req, res){
 
     // Check to see if logged in.
     if (req.session.teamname == undefined) {
-        return res.redirect('/login');
+        return res.redirect('/');
     };
     
     // Save the challenge.
@@ -291,7 +291,7 @@ exports.upload = function(request, response){
 
 exports.drop = function(req, res) {
     if (req.session.teamname == undefined) {
-        return res.json({redirect: '/login'});
+        return res.json({redirect: '/'});
     }
     Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
         var teamprojects = response.projects;
