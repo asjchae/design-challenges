@@ -174,9 +174,101 @@ exports.acceptchallenge = function(req,res){
 }
 
 exports.submitchallenge = function(req, res){
-    res.render('submit', {title: "Submit Challenge", page: ''});
+    Challenge.findOne({name: req.body.challengename}).exec(function (err, data) {
+        var submissions = data.submissions;
+        submissions.push([req.body.submission, req.session.teamname]);
+        Challenge.update({name: data.name}, {submissions: submissions}, {upsert: true}, function (err) {
+            if (err) {
+                console.log("Error", err);
+                res.redirect('/challengepage/' + data.name);
+            }
+            return res.render('challengepage', {title: req.body.challengename, status: 'open', challenge: data, page: 'challenge'});
+        });
+    });
 };
 
+<<<<<<< HEAD
+=======
+exports.pickwinner = function(req, res) {
+    var winner = req.body.winner.split('_')[0];
+    var winninglink = req.body.winner.split('_')[1];
+    var challengename = req.body.winner.split('_')[2];
+    console.log(winner);
+    console.log(winninglink);
+    console.log(challengename);
+
+    Challenge.findOne({name: challengename}).exec(function (err, data) {
+        var win = [winner, winninglink];
+        Challenge.update({name: data.name}, {winner: win, status: "Closed"}, {upsert: true}, function (err) {
+            if (err) {
+                console.log("Error", err);
+                res.redirect('/challengepage/' + data.name);
+            }
+            res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+        });
+    });
+};
+
+exports.challengepage = function(req, res){
+    var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
+        console.log(req.session.teamname);
+        console.log(data.createdby);
+        if (req.session.teamname == data.createdby) {
+
+            if (data.winner.length > 1) {
+                return res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+            }
+
+            if (data.status == "Open") {
+                var today = new Date();
+                var comparedate = data.dateclosed;
+
+                if (comparedate < today) {
+                    Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
+                        if (err) {
+                            console.log("Error", err);
+                            res.redirect('/challengepage/' + data.name);
+                        }
+                        return res.render('challengecreator', {title: data.name, challenge: data, status: 'open', submissions: data.submissions, page: 'challenge'});
+                    });
+                }
+            }
+
+            if (err) {
+                res.redirect('/challengebrowser')
+            } else {
+                res.render('challengecreator', {title: req.params.selected, submissions: data.submissions, status: 'open', challenge: data, page: 'challenge'});
+            }
+        } else {
+
+            if (data.winner.length > 1) {
+                return res.render('challengepage', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+            }
+
+            if (data.status == "Open") {
+                var today = new Date();
+                var comparedate = data.dateclosed;
+
+                if (comparedate < today) {
+                    Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
+                        if (err) {
+                            console.log("Error", err);
+                        }
+                        return res.render('challengepage', {title: data.name, status: 'open', challenge: data, page: 'challenge'});
+                    });
+                }
+            }
+
+            if (err) {
+                res.redirect('/challengebrowser')
+            } else {
+                res.render('challengepage', {title: req.params.selected, challenge: data, status: 'open', page: 'challenge'});
+            }
+        }
+    });
+};
+
+>>>>>>> 9d8e484028d61b860f6a784e67d7759ef3aac1e4
 exports.upload = function(request, response){
   console.log("Request handler 'upload' was called.");
 
@@ -227,3 +319,4 @@ exports.checkname = function(req, res) {
         }
     });
 }
+

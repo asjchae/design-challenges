@@ -97,11 +97,15 @@ exports.teamcheck = function(req, res){
             for (var i=0; i<myteam.interests.length; i++) {
                 interests.push(myteam.interests[i].interest);
             }
+            var members;
+            for (var i=0; i<myteam.members.length; i++) {
+                members.concat(myteam.members[i][0]+"  ");
+            }
             teamprojects(myteam, function(openprojects, closedprojects, opencreated, closedcreated) {
                 res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname,
                     openchallengescreated: opencreated, closedchallengescreated: closedcreated,
                     openprojects: openprojects, closedprojects: closedprojects, interests:interests,
-                    members: myteam.members, captain: myteam.captain});
+                    members: members, captain: myteam.captain});
             });
         }
     });

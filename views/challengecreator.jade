@@ -5,6 +5,7 @@ block content
   script(src='/javascripts/challengedrop.js')
     
   body
+
     .container-fluid
       .row-fluid(style="height:100px;")
         span.span6
@@ -25,11 +26,34 @@ block content
         span.span6
           h5.heading Description: #{challenge.description}
         span.span6
-          h5.heading Prize: #{challenge.prize}          
-      .row-fluid(style="height:100px;")
-        span.span6
-            button.challengedrop.btn.btn-danger.btn-large.pull-right(value=challenge.name) Drop
-        span.span6
+          h5.heading Prize: #{challenge.prize}
 
-          form(method='get', action='/submitchallenge')
-            button.btn.btn-success.btn-large Submit
+    if (status == 'closed')
+        h3 Winner: #{challenge.winner[0]}
+        input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + challenge.winner[1]+ "\';")View
+
+    else
+        span.span6
+          table.table
+            thead
+              tr
+                th Team
+                th Submission
+                th Select as Winner
+            tbody
+              each sub, i in challenge.submissions
+                form(method='post', action='/pickwinner')
+                  tr
+                    td #{sub[1]}
+                    td
+                      input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + sub[0]+ "\';")View
+                      input(type='hidden', value=value=sub[1] + '_' + sub[0] + '_' + challenge.name, name="winner")
+                    td
+                      button.btn.pull-center Button
+            
+
+          //- h5.heading Submissions:
+          //- each sub, i in challenge.submissions
+          //-   | #{sub[0]}
+          //-   br
+      .row-fluid(style="height:100px;")
