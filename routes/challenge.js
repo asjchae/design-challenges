@@ -213,6 +213,11 @@ exports.challengepage = function(req, res){
                 res.render('challengecreator', {title: req.params.selected, submissions: data.submissions, status: 'open', challenge: data, page: 'challenge'});
             }
         } else {
+
+            if (date.winner) {
+                return res.render('challengepage', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+            }
+
             if (data.status == "Open") {
                 var today = new Date();
                 var comparedate = data.dateclosed;
@@ -222,7 +227,7 @@ exports.challengepage = function(req, res){
                         if (err) {
                             console.log("Error", err);
                         }
-                        return res.render('challengepage', {title: data.name, challenge: data, page: 'challenge'});
+                        return res.render('challengepage', {title: data.name, status: 'open', challenge: data, page: 'challenge'});
                     });
                 }
             }
@@ -230,7 +235,7 @@ exports.challengepage = function(req, res){
             if (err) {
                 res.redirect('/challengebrowser')
             } else {
-                res.render('challengepage', {title: req.params.selected, challenge: data, page: 'challenge'});
+                res.render('challengepage', {title: req.params.selected, challenge: data, status: 'open', page: 'challenge'});
             }
         }
     });
