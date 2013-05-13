@@ -31,5 +31,8 @@ block content
             button.challengedrop.btn.btn-danger.btn-large.pull-right(value=challenge.name) Drop
         span.span6
 
-          form(method='get', action='/submitchallenge')
-            button.btn.btn-success.btn-large Submit
+          form(method='post', action='/submitchallenge')
+
+            | Enter the link to your submission here:
+            input(type="url", name='submission', placeholder="Submission")
+            button.btn.btn-success.btn-large(name='challengename', value=challenge.name) Submit

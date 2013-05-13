@@ -149,6 +149,8 @@ exports.selectchallenge = function(req, res){
 };
 
 exports.submitchallenge = function(req, res){
+    console.log("Here:")
+    console.log(req.body)
     res.render('submit', {title: "Submit Challenge", page: ''});
 };
 

@@ -56,7 +56,13 @@ block content
     | Password:
     input(type='password', name='pwd', id='pwd')
     br
-    
+    select.selections.span5(data-placeholder="Choose a category...", multiple, class="chzn-select", name='categories', id='categories', placeholder='Categories...')
+      option(value="physical_exertion") Physical Exertion
+      option(value="meditation") Meditation
+      option(value="education") Education
+      option(value="relaxation") Relaxation
+      option(value="socialization") Socialization
+      option(value="salivation") Salivation
     | Team Captain: 
     br
     input(type='text', 'name = captain', id='captain')   
@@ -96,3 +102,6 @@ block content
 
     br    
     input(type='submit', value='Submit')
+
+    img(src)
+    <a href="http://www.flickr.com/photos/kool_skatkat/431209056/" title="Australia, Melbourne: Team work by kool_skatkat, on Flickr"><img src="http://farm1.staticflickr.com/163/431209056_de6dbd1548_z.jpg?zz=1" width="480" height="640" alt="Australia, Melbourne: Team work"></a>
