@@ -81,6 +81,7 @@ app.post('/upload', challenge.upload)
 
 app.post('/checkchallenge', challenge.checkname)
 app.post('/checkteam', team.checkname)
+app.post('/pickwinner', challenge.pickwinner)
 
 // Database administrative test routes.
 app.get('/teams/view', dbmanage.teams);

@@ -149,10 +149,9 @@ exports.selectchallenge = function(req, res){
 };
 
 exports.submitchallenge = function(req, res){
-
     Challenge.findOne({name: req.body.challengename}).exec(function (err, data) {
         var submissions = data.submissions;
-        submissions.push(req.body.submission);
+        submissions.push([req.body.submission, req.session.teamname]);
         Challenge.update({name: data.name}, {submissions: submissions}, {upsert: true}, function (err) {
             if (err) {
                 console.log("Error", err);
@@ -163,6 +162,9 @@ exports.submitchallenge = function(req, res){
     });
 };
 
+exports.pickwinner = function(req, res) {
+    // req.session.submission
+};
 
 exports.challengepage = function(req, res){
     var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
