@@ -78,11 +78,18 @@ exports.signuppost = function(req, res) {
 };
 
 exports.teampage = function(req, res){
-    if (!req.session.teamname) {
+    console.log(req.session)
+    if (!req.session.teamname) {    
         return res.redirect('/');
     }
-    var team = Team.find({teamname:req.session.teamname}).exec(function (err, data) {
-        if (err) {
+    else {
+        return res.redirect('/team/'+req.session.teamname)
+    }
+}
+
+exports.teamcheck = function(req, res){
+    var team = Team.find({teamname:req.params.teamname}).exec(function (err, data) {
+        if (err) {  
             res.send("Could not find team");
         } else {
             var myteam = data[0];
@@ -128,6 +135,7 @@ function teamprojects(myteam, callback) {
                     if (comparedate > today) {
                         // not yet closed
                         openprojects.push({proj:response.name, url:'/challengepage/'+response.name});
+
                         callbacktracker.push('.');
                         if (callbacktracker.length == myteam.projects.length) {
                             teamchallenges(myteam, function(opencreated, closedcreated) {
@@ -166,6 +174,7 @@ function teamchallenges(myteam, callback) {
     var opencreated = [];
     var closedcreated = [];
     var callbacktracker = [];
+
     console.log(myteam.createdchallenges);
     if (myteam.createdchallenges.length == 0) {
         callback(opencreated, closedcreated);
