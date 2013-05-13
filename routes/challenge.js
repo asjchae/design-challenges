@@ -35,26 +35,21 @@ exports.addchallengepost = function(req, res){
     }
     var year = date.getFullYear();
 
-<<<<<<< Updated upstream
-    var d = year + "/" + month + "/" + number;
-    console.log(req.body.datepicker)    
+    var d = year + "/" + month + "/" + number;   
     var finishDate = req.body.datepicker.split("/");
-    
-    var date2 = new Date(finishDate[0], finishDate[1]-1, finishDate[2]);
+    var finish = finishDate[2] + "/" + finishDate[0] + "/" + finishDate[1];
+    console.log(finish);
+    var date2 = new Date(finishDate[2], finishDate[0]-1, finishDate[1]);
+    console.log(date2);
     
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
-                        createdby: req.session.teamname, prize: req.body.prize, status: "Open", created: d, closed:finish, datecreated: date, dateclosed: date2});
-=======
-    var d = month + "/" + number + "/" + year;
+                        createdby: req.session.teamname, prize: req.body.prize, status: "Open",
+                        created: d, closed:finish, datecreated: date, dateclosed: date2});
 
-    var finishDate = req.body.finishdate.replace("-", '/').replace("-", '/')
-    
-    var challenge = new Challenge({name: req.body.name, type: req.body.type, 
-                        prompt: req.body.prompt, description: req.body.description, 
-                        createdby: req.session.teamname, prize: req.body.prize, status: "Open", datecreated: d, dateclosed: finishDate});
->>>>>>> Stashed changes
-    
+    console.log("hi");
+    console.log(challenge.dateclosed);
+
     challenge.save(function (err) {
         if (err) {
             console.log("Problem signing team up", err);
@@ -82,7 +77,11 @@ exports.challengebrowser = function(req, res){
     var allChallenges = Challenge.find({}).exec(function (err, data) {
         if (err) {
             res.send("Could not find all challenges");
+        } else if (data.length == 0) {
+            console.log("skip");
+            res.render('challengebrowser', {title: "Challenge Browser", challengepack: [], page: 'browser'});
         } else {
+            console.log("meow");
             challengepacker(data, res, function (res, challenge) {
                 res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge, page: 'browser', loggedin: loggedin});
             })
@@ -93,12 +92,33 @@ exports.challengebrowser = function(req, res){
 // Function to sort through array of all challenges.
 function challengepacker(data, res, callback) {
     var challenge = [];
+    var allofthem = [];
     for (var i = 0; i<data.length; i++) {
         var chal = Challenge.findOne({name: data[i].name}).exec(function (err, response) {
-            // CHECK FOR OPEN/CLOSE HERE.
-            challenge.push(response);
-            if (challenge.length == data.length) {
-                callback(res, challenge);
+
+        // CHECK FOR OPEN/CLOSE HERE.
+            if (response.status == "Open") {
+                console.log
+                var today = new Date();
+                var comparedate = response.dateclosed;
+                console.log(today);
+                console.log(comparedate);
+
+                if (comparedate > today) {
+                    // Not yet closed.
+                    console.log("not yet closed");
+                    challenge.push(response);
+                    allofthem.push(response);
+                    if (allofthem.length == data.length) {
+                        callback(res, challenge);
+                    }
+                } else {
+                    console.log("closed");
+                    allofthem.push(response);
+                    if (allofthem.length == data.length) {
+                        callback(res, challenge);
+                    }
+                }
             }
         });
     }
