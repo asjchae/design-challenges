@@ -40,20 +40,20 @@ block content
           .row-fluid(style="height:100px;")
             span.span6
           button.challengedrop.btn.btn-danger.btn-large.pull-left(value=challenge.name) Drop   
-        else
-          form(method='post', action='/acceptchallenge')
-            input(type='hidden', name= 'name', value = challenge.name)
-            input(type='hidden', name= 'type', value = challenge.type)
-            input(type='hidden', name= 'prompt', value = challenge.prompt)
-            input(type='hidden', name= 'description', value = challenge.description)
-            input(type='hidden', name= 'prizerecieved', value = challenge.prizerecieved)
-            input(type='hidden', name= 'createdby', value = challenge.createdby)
-            input(type='hidden', name= 'prize', value = challenge.prize)
-            input(type='hidden', name= 'status', value = challenge.status)
-            input(type='hidden', name= 'created', value = challenge.created)
-            input(type='hidden', name= 'closed', value = challenge.closed)
-            input(type='hidden', name= 'datecreated', value = challenge.datecreated)
-            input(type='hidden', name= 'dateclosed', value = challenge.dateclosed)
-            button.btn.btn-success.btn-large(name='challengename', value=challenge.name) Accept
+        //- else
+        //-   form(method='post', action='/acceptchallenge')
+        //-     input(type='hidden', name= 'name', value = challenge.name)
+        //-     input(type='hidden', name= 'type', value = challenge.type)
+        //-     input(type='hidden', name= 'prompt', value = challenge.prompt)
+        //-     input(type='hidden', name= 'description', value = challenge.description)
+        //-     input(type='hidden', name= 'prizerecieved', value = challenge.prizerecieved)
+        //-     input(type='hidden', name= 'createdby', value = challenge.createdby)
+        //-     input(type='hidden', name= 'prize', value = challenge.prize)
+        //-     input(type='hidden', name= 'status', value = challenge.status)
+        //-     input(type='hidden', name= 'created', value = challenge.created)
+        //-     input(type='hidden', name= 'closed', value = challenge.closed)
+        //-     input(type='hidden', name= 'datecreated', value = challenge.datecreated)
+        //-     input(type='hidden', name= 'dateclosed', value = challenge.dateclosed)
+        //-     button.btn.btn-success.btn-large(name='challengename', value=challenge.name) Accept
 
 
