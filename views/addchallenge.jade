@@ -1,30 +1,65 @@
 extends layout
 
 block content
-    .row-fluid
-        span.span6.span6-1
-            h2 Create a Challenge.
-            form(method='post', action='/addchallenge', id='addchallenge')
-      
-                h5.heading Project Name:
-                input#name.textinput(type='text', name='name', placeholder='Name', required)
-                h5.heading Type:
-                select#type(name='type', required)
-                  option(value='Fun') Fun
-                  option(value='Programming') Programming
-                  option(value='Writing') Writing
-                  option(value='Mechanical Design') Mechanical Design
-                  option(value='Politics') Politics
-                h5.heading Describe the background situation:
-                textarea#description(name='description', placeholder='Description', required)
-                h5.heading Give the user a prompt to describe the problem:
-                textarea#prompt(name='prompt', placeholder='Prompt', required)
-                h5.heading Prize:
-                textarea#prize(name='prize', placeholder='Prize', required)
-                input#finishdate(type='date', name='finishdate', required)
-                input(type='file', name='inputfile')
-                input#submit( type="submit", class="btn pull-right btn-success btn-large")    Submit
-                
-                //- input(type='submit', value='Submit')
+  .row-fluid
+    span.span6.span6-1
+        h2 Create a Challenge.
+        form(method='post', action='/addchallenge', id='addchallenge')
+  
+            h5.heading Project Name:
+            input#name.textinput(type='text', name='name', placeholder='Name', required)
+            h5.heading Type:
+            select#type(name='type', required)
+              option(value='Fun') Fun
+              option(value='Programming') Programming
+              option(value='Writing') Writing
+              option(value='Mechanical Design') Mechanical Design
+              option(value='Politics') Politics
+            h5.heading Describe the background situation:
+            textarea#description(name='description', placeholder='Description', required)
+            h5.heading Give the user a prompt to describe the problem:
+            textarea#prompt(name='prompt', placeholder='Prompt', required)
+            h5.heading Prize:
+            textarea#prize(name='prize', placeholder='Prize', required)
+            input#finishdate(type='date', name='finishdate', required)
+            //input(type="text",id="datepicker", class="hasDatepicker")
+            #datepicker(name="datepicker")
+            script
+              $( "#datepicker" ).datepicker();
+            //input(type='file', name='inputfile')
+            input#submit( type="submit", class="btn pull-right btn-success btn-large")    Submit
+            
+            //- input(type='submit', value='Submit')
 
-        span.span6
+    span.span6
+
+  //- .container-fluid
+  //-   .row-fluid
+  //-     span.span12
+  //-   .row-fluid
+  //-     span.span6.offset3.span6-1
+  //-       .row-fluid
+  //-         span.span6
+  //-           h5.heading Project Name:
+  //-           input#name.textinput(type='text', name='name', placeholder='Name')
+  //-           h5.heading Type:
+  //-           select#type(name='type')
+  //-             option(value='Fun') Fun
+  //-             option(value='Programming') Programming
+  //-             option(value='Writing') Writing
+  //-             option(value='Mechanical Design') Mechanical Design
+  //-             option(value='Politics') Politics
+  //-         span.span6
+  //-           h5.heading Date:
+  //-           input.textinput(type='text', placeholder='Placeholder', name='')
+  //-           h5.heading Prize:
+  //-           input.textinput(type='text', placeholder='Placeholder', name='')
+  //-       h5.heading Describe the background situation:
+  //-       textarea#description.pull-left(name='description', placeholder='Description ')
+  //-       h5.heading Give the user a prompt to describe the problem:
+  //-       textarea#prompt(name='prompt', placeholder='Prompt')
+  //-       button.btn.btn-success.btn-large.pull-center Button
+  //-     span.span3
+  //-   .row-fluid
+  //-   .row-fluid
+

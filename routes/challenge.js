@@ -35,10 +35,20 @@ exports.addchallengepost = function(req, res){
     }
     var year = date.getFullYear();
     var d = year + "/" + month + "/" + number;
-    var finishDate = req.body.finishdate.replace("-", '/').replace("-", '/')
+
+    var finishDate = d//req.body.finishdate.replace("-", '/').replace("-", '/')
+    console.log(req.body.datepicker)    
+
+    var finish = req.body.finishdate.replace("-", "/").replace("-", "/");
+    var finishDate = req.body.finishdate.split("-");
+    var finishDate = d//req.body.finishdate.replace("-", '/').replace("-", '/')
+
+    var date2 = new Date(finishDate[0], finishDate[1]-1, finishDate[2]);
+    
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
-                        createdby: req.session.teamname, prize: req.body.prize, status: "Open", datecreated: d, dateclosed: finishDate});
+                        createdby: req.session.teamname, prize: req.body.prize, status: "Open", created: d, closed:finish, datecreated: date, dateclosed: date2});
+    
     challenge.save(function (err) {
         if (err) {
             console.log("Problem signing team up", err);
@@ -78,12 +88,15 @@ exports.challengebrowser = function(req, res){
 function challengepacker(data, res, callback) {
     var challenge = [];
     for (var i = 0; i<data.length; i++) {
-        challenge.push(data[i]);
-    } 
-    callback(res, challenge);
+        var chal = Challenge.findOne({name: data[i].name}).exec(function (err, response) {
+            // CHECK FOR OPEN/CLOSE HERE.
+            challenge.push(response);
+            if (challenge.length == data.length) {
+                callback(res, challenge);
+            }
+        });
+    }
 };
-
-
 
 exports.selectchallenge = function(req, res){
     if (req.session.teamname == undefined) {

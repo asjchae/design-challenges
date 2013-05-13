@@ -1,8 +1,17 @@
 extends layout
 
 block content
-  h1= title
-  form(action='/login', method='get')
-    input(type='submit', value='Log In')
-  form(action='/signup', method='get')
-    input(type='submit', value='Sign Up')
+  div(id="absolute-wrapper")
+    img(src="http://whatislistening.com/blog/wp-content/uploads/2011/11/friendship-1024x769.jpg", class="image")
+
+    form(style="position:absolute;top: 600px;",method='post', action='/login', id='teamlogin')
+      
+      | Username:
+      input(type='text', name='teamname', id='teamname')
+      br
+      | Password:
+      input(type='password', name='pwd', id='pwd')
+      br
+      input.btn.btn-large.btn-inverse(style='position:absolute;width:110px;',type='submit', value='Log In')
+    form(action='/signup', method='get')
+      input.btn.btn-large.btn-inverse(style='position: fixed;top: 682px;width: 110px;left: 485px;',type='submit', value='Sign Up')
