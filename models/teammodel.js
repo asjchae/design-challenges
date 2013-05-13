@@ -8,12 +8,13 @@ var teamschema = mongoose.Schema({
     score: Number,
     prizescore: Number,
     // Update this later with an object type. 
-    createdchallenges: [{name: String, prizegiven: Boolean}],
+    // createdchallenges: [{name: String, prizegiven: Boolean}],
     interests: [{interest: String, completions: Number}], 
     picture: String,
     // projects: [{projectname: String}]
     projects: Array,
-    challengescreated: Array
+    createdchallenges: Array
+    // challengescreated: Array
 });
 
 var Team = mongoose.model('Team', teamschema);

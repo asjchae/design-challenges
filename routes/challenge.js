@@ -39,10 +39,15 @@ exports.addchallengepost = function(req, res){
     var finishDate = req.body.datepicker.split("/");
     var finish = finishDate[2] + "/" + finishDate[0] + "/" + finishDate[1];
     var date2 = new Date(finishDate[2], finishDate[0]-1, finishDate[1]);
-    
+
+    var status = "Open";
+    if (date2 < date) {
+        status = "Closed";
+    }
+
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
-                        createdby: req.session.teamname, prize: req.body.prize, status: "Open",
+                        createdby: req.session.teamname, prize: req.body.prize, status: status,
                         created: d, closed:finish, datecreated: date, dateclosed: date2});
 
     challenge.save(function (err) {
@@ -52,9 +57,9 @@ exports.addchallengepost = function(req, res){
         } else {
             // Add the challenge to the team that created it.
             Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
-                var createdchals = response.challengescreated;
+                var createdchals = response.createdchallenges;
                 createdchals.push(req.body.name);
-                Team.update({teamname: req.session.teamname}, {challengescreated: createdchals}, {upsert: true}, function (err) {
+                Team.update({teamname: req.session.teamname}, {createdchallenges: createdchals}, {upsert: true}, function (err) {
                     return res.redirect('/challengepage/' + req.body.name);
                 });
             });
@@ -69,6 +74,7 @@ exports.challengebrowser = function(req, res){
     if (!req.session.teamname) {
         loggedin='no'
     }
+
     var allChallenges = Challenge.find({}).exec(function (err, data) {
         if (err) {
             res.send("Could not find all challenges");
@@ -109,6 +115,11 @@ function challengepacker(data, res, callback) {
                         callback(res, challenge);
                     }
                 }
+            } else if (response.status == "Closed") {
+                allofthem.push(response);
+                if (allofthem.length == data.length) {
+                    callback(res, challenge);
+                }
             }
         });
     }
@@ -145,8 +156,22 @@ exports.submitchallenge = function(req, res){
 exports.challengepage = function(req, res){
     var allChallenges = Challenge.findOne({name: req.params.selected}).exec(function (err, data) {
         console.log(data);
+        if (data.status == "Open") {
+            var today = new Date();
+            var comparedate = data.dateclosed;
+
+            if (comparedate < today) {
+                Challenge.update({name: data.name}, {status: "Closed"}, {upsert: true}, function (err) {
+                    if (err) {
+                        console.log("Error", err);
+                    }
+                    return res.render('challengepage', {title: data.name, challenge: data, page: 'challenge'});
+                });
+            }
+        }
+
         if (err) {
-            res.send("Could not find challenge");
+            res.redirect('/challengebrowser')
         } else {
             res.render('challengepage', {title: req.params.selected, challenge: data, page: 'challenge'});
         }
