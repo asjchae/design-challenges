@@ -93,10 +93,11 @@ exports.teamcheck = function(req, res){
             res.send("Could not find team");
         } else {
             var myteam = data[0];
-            var interests = [];
+            var interests = "";
             for (var i=0; i<myteam.interests.length; i++) {
-                interests.push(myteam.interests[i].interest);
+                interests = interests.concat( "  " +(myteam.interests[i].interest) + "  ");
             }
+
             teamprojects(myteam, function(openprojects, closedprojects, opencreated, closedcreated) {
                 res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname,
                     openchallengescreated: opencreated, closedchallengescreated: closedcreated,
