@@ -1,14 +1,6 @@
 extends layout
 
 block content
-
-
-
-
-
-
-
-vs
   script(src='/javascripts/challengeselect.js')
   script(src='/javascripts/challengedrop.js')
     
@@ -34,34 +26,29 @@ vs
         span.span6
           h5.heading Description: #{challenge.description}
         span.span6
-<<<<<<< HEAD
-          h5.heading Prize: #{challenge.prize}          
-      .row-fluid(style="height:100px;")
-        span.span6
-          h5.heading Submissions: #{challenge.submissions}
-        
-        table.table
-          thead
-            tr
-              th Team
-              th Submission
-              th Selection
-          tbody
-            each challenge, i in sub
-              tr
-                td challenge[1]
-                td
-                  button.btn.pull-center(href="challenge[0]") Button
-                td
-                  button.btn.pull-center Button
-              
-=======
           h5.heading Prize: #{challenge.prize}
 
         span.span6
-          h5.heading Submissions:
-          each sub, i in challenge.submissions
-            | #{sub[0]}
-            br
+          table.table
+            thead
+              tr
+                th Team
+                th Submission
+                th Selection
+            tbody
+              each sub, i in challenge.submissions
+                form(method='post', action='/pickwinner')
+                  tr
+                    td #{sub[1]}
+                    td
+                      input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + sub[0]+ "\';")View
+                      input(type='hidden', value=value=sub[1] + '_' + sub[0], name="winner")
+                    td
+                      button.btn.pull-center Button
+            
+
+          //- h5.heading Submissions:
+          //- each sub, i in challenge.submissions
+          //-   | #{sub[0]}
+          //-   br
       .row-fluid(style="height:100px;")
->>>>>>> 0d0374f824c5efca602dcef019d85ac1826d68b1
