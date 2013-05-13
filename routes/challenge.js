@@ -34,6 +34,8 @@ exports.addchallengepost = function(req, res){
         number = "0".concat(number);
     }
     var year = date.getFullYear();
+
+<<<<<<< Updated upstream
     var d = year + "/" + month + "/" + number;
     console.log(req.body.datepicker)    
     var finishDate = req.body.datepicker.split("/");
@@ -43,6 +45,15 @@ exports.addchallengepost = function(req, res){
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
                         createdby: req.session.teamname, prize: req.body.prize, status: "Open", created: d, closed:finish, datecreated: date, dateclosed: date2});
+=======
+    var d = month + "/" + number + "/" + year;
+
+    var finishDate = req.body.finishdate.replace("-", '/').replace("-", '/')
+    
+    var challenge = new Challenge({name: req.body.name, type: req.body.type, 
+                        prompt: req.body.prompt, description: req.body.description, 
+                        createdby: req.session.teamname, prize: req.body.prize, status: "Open", datecreated: d, dateclosed: finishDate});
+>>>>>>> Stashed changes
     
     challenge.save(function (err) {
         if (err) {
