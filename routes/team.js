@@ -1,5 +1,6 @@
 var bcrypt = require('bcrypt')
     , Team = require('../models/teammodel')
+    , Challenge = require('../models/challengemodel')
     , mongoose = require('mongoose');
 
 // Login page.
@@ -89,18 +90,88 @@ exports.teampage = function(req, res){
             for (var i=0; i<myteam.interests.length; i++) {
                 interests.push(myteam.interests[i].interest);
             }
-            var projects = [];
+
+            // Need to make this another function
+
+            var openprojects = [];
+            var closedprojects = [];
+            var callbacktracker = [];
             for (var p=0; p<myteam.projects.length; p++) {
-                projects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
+                console.log(myteam);
+                Challenge.findOne({name: myteam.projects[p]}).exec(function (err, response) {
+                    if (!response) {
+                        callbacktracker.push('.');
+                        if (callbacktracker.length == myteam.projects.length) {
+                            teamchallenges(myteam.challengescreated, function(opencreated, closedcreated) {
+                                res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname,
+                                    openchallengescreated: opencreated, closedchallengescreated: closedcreated,
+                                    openprojects: openprojects, closedprojects: closedprojects, interests:interests,
+                                    members: myteam.members, captain: myteam.captain});
+                            });
+                        }
+                    } else {
+                        if (response.status == "Open") {
+                            openprojects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
+                            callbacktracker.push('.');
+                            if (callbacktracker.length == myteam.projects.length) {
+                                teamchallenges(myteam.challengescreated, function(opencreated, closedcreated) {
+                                    res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname,
+                                        openchallengescreated: opencreated, closedchallengescreated: closedcreated,
+                                        openprojects: openprojects, closedprojects: closedprojects, interests:interests,
+                                        members: myteam.members, captain: myteam.captain});
+                                });
+                            }
+                        } else if (response.status == "Closed") {
+                            closedprojects.push({proj:myteam.projects[p], url:'/challengepage/'+myteam.projects[p]});
+                            callbacktracker.push('.');
+                            if (callbacktracker.length == myteam.projects.length) {
+                                teamchallenges(myteam.challengescreated, function(opencreated, closedcreated) {
+                                    res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname,
+                                        openchallengescreated: opencreated, closedchallengescreated: closedcreated,
+                                        openprojects: openprojects, closedprojects: closedprojects, interests:interests,
+                                        members: myteam.members, captain: myteam.captain});
+                                });
+                            }
+                        }
+                    }
+                });
             }
-            var challengescreated = [];
-            for (var c=0; c<myteam.challengescreated.length; c++) {
-                challengescreated.push({chal: myteam.challengescreated[c], url:'/challengepage/'+myteam.challengescreated[c]});
-            }
-            res.render('teampage', {page: 'team', title: "Team Page", teamname:myteam.teamname, challengescreated: challengescreated, projects:projects, interests:interests, members: myteam.members, captain: myteam.captain});
         }
     });
 };
+
+
+function teamchallenges(challengescreated, callback) {
+    var opencreated = [];
+    var closedcreated = [];
+    var callbacktracker = [];
+    console.log(challengescreated);
+    for (var c=0; c<challengescreated.length; c++) {
+        // check that the project is live
+        Challenge.findOne({name: challengescreated[c]}).exec(function (err, response) {
+            if (!response) {
+                callbacktracker.push('.');
+                if (callbacktracker.length == challengescreated.length) {
+                    callback(opencreated, closedcreated);
+                }
+            } else {
+                if (response.status == "Open") {
+                    opencreated.push({chal: challengescreated[c], url:'/challengepage'+challengescreated[c]});
+                    callbacktracker.push('.');
+                    if (callbacktracker.length == challengescreated.length) {
+                        callback(opencreated, closedcreated);
+                    }
+                } else if (response.status == "Closed") {
+                    closedcreated.push({chal: challengescreated[c], url:'/challengepage'+challengescreated[c]});
+                    callbacktracker.push('.');
+                    if (callbacktracker.length == challengescreated.length) {
+                        callback(opencreated, closedcreated);
+                    }
+                }
+            }
+        });
+    }
+}
 
 exports.leaderboard = function(req, res){
     res.send("Needs to be implemented");
@@ -115,4 +186,14 @@ function login(req, res, team) {
 exports.logout = function(req, res) {
     req.session.destroy();
     return res.redirect('/');
+}
+
+exports.checkname = function(req, res) {
+    Team.findOne({teamname: req.body.teamname}).exec(function (err, response) {
+        if (!response) {
+            return true;
+        } else {
+            return false;
+        }
+    });
 }

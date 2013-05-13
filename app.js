@@ -80,6 +80,9 @@ app.get('/submitchallenge', challenge.submitchallenge);
 app.post('/submitchallenge', challenge.submitchallenge);
 app.post('/upload', challenge.upload)
 
+app.post('/checkchallenge', challenge.checkname)
+app.post('/checkteam', team.checkname)
+
 // Database administrative test routes.
 app.get('/teams/view', dbmanage.teams);
 app.get('/teams/delete', dbmanage.deleteteams);

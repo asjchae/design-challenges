@@ -8,12 +8,20 @@ block content
     each int, i in interests
       | #{int} 
     br
-    |Current projects: 
-    each proj, p in projects
+    |Current open projects: 
+    each proj, p in openprojects
       a(href='#{proj.url}') #{proj.proj}   
     br
-    |Challenges created:
-    each chal, c in challengescreated
+    |Current closed projects: 
+    each proj, p in closedprojects
+      a(href='#{proj.url}') #{proj.proj}   
+    br
+    |Challenges created that are open:
+    each chal, c in openchallengescreated
+      a(href='#{chal.url}') #{chal.chal}
+    br
+    |Challenges created that are closed:
+    each chal, c in closedchallengescreated
       a(href='#{chal.url}') #{chal.chal}
     br
     |Captain: #{captain.name}    

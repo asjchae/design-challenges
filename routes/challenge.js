@@ -193,3 +193,13 @@ exports.drop = function(req, res) {
     });
 };
     
+
+exports.checkname = function(req, res) {
+    Challenge.findOne({name: req.body.challengename}).exec(function (err, response) {
+        if (!response) {
+            return true;
+        } else {
+            return false;
+        }
+    });
+}
