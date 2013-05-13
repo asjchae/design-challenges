@@ -166,6 +166,20 @@ exports.pickwinner = function(req, res) {
     var winner = req.body.winner.split('_')[0];
     var winninglink = req.body.winner.split('_')[1];
     var challengename = req.body.winner.split('_')[2];
+    console.log(winner);
+    console.log(winninglink);
+    console.log(challengename);
+
+    Challenge.findOne({name: challengename}).exec(function (err, data) {
+        var win = [winner, winninglink];
+        Challenge.update({name: data.name}, {winner: win}, {upsert: true}, function (err) {
+            if (err) {
+                console.log("Error", err);
+                res.redirect('/challengepage/' + data.name);
+            }
+            res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+        });
+    });
 };
 
 exports.challengepage = function(req, res){
@@ -173,6 +187,10 @@ exports.challengepage = function(req, res){
         console.log(req.session.teamname);
         console.log(data.createdby);
         if (req.session.teamname == data.createdby) {
+
+            if (data.winner) {
+                return res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+            }
 
             if (data.status == "Open") {
                 var today = new Date();

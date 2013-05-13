@@ -14,7 +14,8 @@ var challengeschema = mongoose.Schema({
     closed: String,
     datecreated: Date,
     dateclosed: Date,
-    submissions: Array
+    submissions: Array,
+    winner: Array
 
 });
 
