@@ -1,0 +1,18 @@
+ body {
+   padding-left: 0;
+   padding-right: 0;
+ }
+ .container-fluid .row-fluid .span9 {
+   width: 461px;
+ }
+ #type {
+   width: 200px;
+ }
+ #description {
+   height: 220px;
+   width: 446px;
+ }
+ #prompt {
+   height: 219.79166650772095px;
+   width: 445.79861068725586px;
+ }

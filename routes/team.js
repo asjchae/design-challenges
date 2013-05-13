@@ -191,9 +191,9 @@ exports.logout = function(req, res) {
 exports.checkname = function(req, res) {
     Team.findOne({teamname: req.body.teamname}).exec(function (err, response) {
         if (!response) {
-            return true;
+            res.send(true);
         } else {
-            return false;
+            res.send(false);
         }
     });
 }
