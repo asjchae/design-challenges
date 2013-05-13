@@ -31,6 +31,13 @@ block content
             button.challengedrop.btn.btn-danger.btn-large.pull-right(value=challenge.name) Drop
         span.span6
 
+
+        if (status == 'closed')
+          h3 Winner: #{challenge.winner[0]}
+          input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + challenge.winner[1]+ "\';") View
+
+        else  
+
           form(method='post', action='/submitchallenge')
 
             | Enter the link to your submission here:
