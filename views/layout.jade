@@ -14,7 +14,7 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='/challengebrowser') Tup
+          a.brand(href='/') Tup
           .nav-collapse.collapse
             ul.nav
               if (page == 'browser')
@@ -38,12 +38,14 @@ html
               //- if (page == 'challenge')
               //-   li.active
               //-     a.bar #{title}
-              if (page == 'about')
-                li.active
-                  a.bar(href='/about') About Tup
-              else      
-                li
-                  a.bar(href='/about') About Tup
+              if (page != 'login')
+                - if (locals.loggedin)
+                  if loggedin = 'yes'
+                    li
+                      a.bar(href='/logout') Log Out
+                else
+                  li
+                    a.bar(href='/logout') Log Out
                
     .container(id='page')
       block content 

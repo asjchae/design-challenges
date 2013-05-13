@@ -48,6 +48,8 @@ app.post('/login', team.loginpost);
 app.get('/signup', team.signup);
 app.post('/signup', team.signuppost);
 
+app.get('/logout', team.logout);
+
 app.get('/teampage', team.teampage);
 
 app.get('/leaderboard', team.leaderboard);

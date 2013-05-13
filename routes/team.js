@@ -4,7 +4,7 @@ var bcrypt = require('bcrypt')
 
 // Login page.
 exports.login = function(req, res) {
-    res.render('login', {title: "Log In", page: ''});
+    res.render('login', {title: "Log In", page: 'login'});
 };
 
 // Login post.
@@ -30,7 +30,7 @@ exports.loginpost = function(req, res) {
 
 // Sign up page.
 exports.signup = function(req, res) {
-    res.render('signup', {title: "Sign Up", page: ''});
+    res.render('signup', {title: "Sign Up", page: 'login'});
 };
 
 
@@ -110,4 +110,9 @@ exports.leaderboard = function(req, res){
 function login(req, res, team) {
     req.session.teamname = req.body.teamname;
     return res.redirect('/challengebrowser');
+}
+
+exports.logout = function(req, res) {
+    req.session.destroy();
+    return res.redirect('/');
 }

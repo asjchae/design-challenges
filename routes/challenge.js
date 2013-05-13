@@ -9,6 +9,9 @@ var formidable = require ("formidable");
 
 
 exports.addchallenge = function(req, res){
+    if (!req.session.teamname) {
+        return res.redirect('/');
+    }
     res.render('addchallenge', {title: "Create Challenge", page:'add'});
 };
 
@@ -56,12 +59,16 @@ exports.addchallengepost = function(req, res){
 
 
 exports.challengebrowser = function(req, res){
+    var loggedin='yes'
+    if (!req.session.teamname) {
+        loggedin='no'
+    }
     var allChallenges = Challenge.find({}).exec(function (err, data) {
         if (err) {
             res.send("Could not find all challenges");
         } else {
             challengepacker(data, res, function (res, challenge) {
-                res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge, page: 'browser'});
+                res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge, page: 'browser', loggedin: loggedin});
             })
         }
     });

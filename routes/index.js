@@ -4,9 +4,12 @@
  */
 
 exports.index = function(req, res){
-  res.render('index', { title: 'Team Up', page: '' });
+  if (!req.session.teamname) {
+        res.render('index', { title: 'Team Up', page: 'login' });
+    }
+  else {return res.redirect('/teampage')};
 };
 
 exports.about = function(req, res) {
-	res.render('about', {title: 'About', page:'about'});
+	res.render('about', {title: 'About', page: 'about'});
 }
