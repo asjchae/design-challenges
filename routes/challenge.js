@@ -182,7 +182,7 @@ exports.challengepage = function(req, res){
                             console.log("Error", err);
                             res.redirect('/challengepage/' + data.name);
                         }
-                        return res.render('challengecreator', {title: data.name, challenge: data, page: 'challenge'});
+                        return res.render('challengecreator', {title: data.name, challenge: data, submissions: data.submissions, page: 'challenge'});
                     });
                 }
             }

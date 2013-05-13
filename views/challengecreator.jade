@@ -5,6 +5,7 @@ block content
   script(src='/javascripts/challengedrop.js')
     
   body
+
     .container-fluid
       .row-fluid(style="height:100px;")
         span.span6
@@ -25,8 +26,11 @@ block content
         span.span6
           h5.heading Description: #{challenge.description}
         span.span6
-          h5.heading Prize: #{challenge.prize}     
+          h5.heading Prize: #{challenge.prize}
+
         span.span6
-          h5.heading Submissions: #{challenge.submissions} 
+          h5.heading Submissions:
+          each sub, i in challenge.submissions
+            | #{sub[0]}
+            br
       .row-fluid(style="height:100px;")
-        span.span6
