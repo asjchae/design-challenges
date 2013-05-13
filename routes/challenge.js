@@ -35,14 +35,9 @@ exports.addchallengepost = function(req, res){
     }
     var year = date.getFullYear();
     var d = year + "/" + month + "/" + number;
-
-    var finishDate = d//req.body.finishdate.replace("-", '/').replace("-", '/')
     console.log(req.body.datepicker)    
-
-    var finish = req.body.finishdate.replace("-", "/").replace("-", "/");
-    var finishDate = req.body.finishdate.split("-");
-    var finishDate = d//req.body.finishdate.replace("-", '/').replace("-", '/')
-
+    var finishDate = req.body.datepicker.split("/");
+    
     var date2 = new Date(finishDate[0], finishDate[1]-1, finishDate[2]);
     
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
