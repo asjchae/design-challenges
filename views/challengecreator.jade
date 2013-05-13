@@ -42,7 +42,7 @@ block content
                     td #{sub[1]}
                     td
                       input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + sub[0]+ "\';")View
-                      input(type='hidden', value=value=sub[1] + '_' + sub[0], name="winner")
+                      input(type='hidden', value=value=sub[1] + '_' + sub[0] + '_' + challenge.name, name="winner")
                     td
                       button.btn.pull-center Button
             
