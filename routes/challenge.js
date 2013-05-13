@@ -188,9 +188,9 @@ exports.challengepage = function(req, res){
         console.log(data.createdby);
         if (req.session.teamname == data.createdby) {
 
-            // if (data.winner) {
-            //     return res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
-            // }
+            if (data.winner) {
+                return res.render('challengecreator', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
+            }
 
             if (data.status == "Open") {
                 var today = new Date();
