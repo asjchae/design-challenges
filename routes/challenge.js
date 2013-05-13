@@ -172,7 +172,7 @@ exports.pickwinner = function(req, res) {
 
     Challenge.findOne({name: challengename}).exec(function (err, data) {
         var win = [winner, winninglink];
-        Challenge.update({name: data.name}, {winner: win}, {upsert: true}, function (err) {
+        Challenge.update({name: data.name}, {winner: win, status: "Closed"}, {upsert: true}, function (err) {
             if (err) {
                 console.log("Error", err);
                 res.redirect('/challengepage/' + data.name);
