@@ -214,7 +214,7 @@ exports.challengepage = function(req, res){
             }
         } else {
 
-            if (data.winner) {
+            if (data.winner.length > 1) {
                 return res.render('challengepage', {title: data.name, challenge: data, status: 'closed', page: 'challenge'});
             }
 
