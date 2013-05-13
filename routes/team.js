@@ -21,7 +21,7 @@ exports.loginpost = function(req, res) {
                     console.log("Logged in " + req.body.teamname);
                     login(req, res, team);
                 } else if (boolean == false) {
-                    res.redirect('/login'); // Just takes you back to log in screen, maybe we can add a cool error message later.
+                    res.redirect('/'); // Just takes you back to log in screen, maybe we can add a cool error message later.
                 }
             });
         }

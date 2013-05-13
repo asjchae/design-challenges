@@ -27,31 +27,33 @@ block content
         span.span6
           h5.heading Prize: #{challenge.prize}
       .row-fluid(style="height:100px;")
+      if (challenge.status == 'closed')
         span.span6
-            button.challengedrop.btn.btn-danger.btn-large.pull-right(value=challenge.name) Drop
-        span.span6
-          if (challenge.status == 'closed')
-            h3 Winner: #{challenge.winner[0]}
-            input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + challenge.winner[1]+ "\';") View
-          - if (locals.mine)
-              | Enter the link to your submission here:
-              input(type="url", name='submission', placeholder="Submission")
+          h3 Winner: #{challenge.winner[0]}
+          input.btn.pull-center(type='button', value="View Submission", onclick="location.href=\'" + challenge.winner[1]+ "\';") View
+      else
+        - if (locals.mine)
+          span.span6
+            form(method='post', action='/submitchallenge')
+              input(type="url", name='submission', placeholder="Enter in the link to your submission:")
               button.btn.btn-success.btn-large(name='challengename', value=challenge.name) Submit
-              
-          else
-            form(method='post', action='/acceptchallenge')
-              input(type='hidden', name= 'name', value = challenge.name)
-              input(type='hidden', name= 'type', value = challenge.type)
-              input(type='hidden', name= 'prompt', value = challenge.prompt)
-              input(type='hidden', name= 'description', value = challenge.description)
-              input(type='hidden', name= 'prizerecieved', value = challenge.prizerecieved)
-              input(type='hidden', name= 'createdby', value = challenge.createdby)
-              input(type='hidden', name= 'prize', value = challenge.prize)
-              input(type='hidden', name= 'status', value = challenge.status)
-              input(type='hidden', name= 'created', value = challenge.created)
-              input(type='hidden', name= 'closed', value = challenge.closed)
-              input(type='hidden', name= 'datecreated', value = challenge.datecreated)
-              input(type='hidden', name= 'dateclosed', value = challenge.dateclosed)
-              input(type='submit', value = 'Accept')
+          .row-fluid(style="height:100px;")
+            span.span6
+          button.challengedrop.btn.btn-danger.btn-large.pull-left(value=challenge.name) Drop   
+        else
+          form(method='post', action='/acceptchallenge')
+            input(type='hidden', name= 'name', value = challenge.name)
+            input(type='hidden', name= 'type', value = challenge.type)
+            input(type='hidden', name= 'prompt', value = challenge.prompt)
+            input(type='hidden', name= 'description', value = challenge.description)
+            input(type='hidden', name= 'prizerecieved', value = challenge.prizerecieved)
+            input(type='hidden', name= 'createdby', value = challenge.createdby)
+            input(type='hidden', name= 'prize', value = challenge.prize)
+            input(type='hidden', name= 'status', value = challenge.status)
+            input(type='hidden', name= 'created', value = challenge.created)
+            input(type='hidden', name= 'closed', value = challenge.closed)
+            input(type='hidden', name= 'datecreated', value = challenge.datecreated)
+            input(type='hidden', name= 'dateclosed', value = challenge.dateclosed)
+            button.btn.btn-success.btn-large(name='challengename', value=challenge.name) Accept
 
 

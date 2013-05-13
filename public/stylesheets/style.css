@@ -8,19 +8,27 @@ a {
 }
 
 #logo {
-  width:50px;
-  height:18px;
-  width:80px;
-  height:40px;
-  margin-left: 10px
+  width:170px;
+  height:60px; 
+  margin-left: 20px; 
 }
-#logo.hover{
+#logo.{
 
 }
-
+.container {
+  margin-top:15px;
+}
 .bar {
-  height: 40px;
-  padding-top: 20px;
+  height: 25px;
+  padding-top: 0px;
+  vertical-align: bottom;
+}
+.challengedrop.btn.btn-danger.btn-large.pull-left{
+  margin-left: 20px;
+}
+
+.button.btn.btn-success.btn-large{
+  vertical-align: text-bottom;
 }
 
 .row-fluid {

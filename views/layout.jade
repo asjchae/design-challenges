@@ -19,14 +19,14 @@ html
 
   body
     .navbar.navbar-inverse.navbar-fixed-top
-      .navbar-inner
+      .navbar-inner          
+        a.brand(href='/')
+          img(src='/Team Up.png', id = 'logo')
         .container
           button.btn.btn-navbar(type='button', data-toggle='collapse', data-target='.nav-collapse')
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='/')
-            img(src='/Team Up.png', id = 'logo')
           .nav-collapse.collapse
             ul.nav
               if (page == 'browser')
