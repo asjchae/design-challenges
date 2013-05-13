@@ -8,13 +8,11 @@ a {
 }
 
 #logo {
-  width:50px;
-  height:18px;
-  width:80px;
-  height:40px;
-  margin-left: 10px
+  width:170px;
+  height:60px; 
+  margin-left: 20px; 
 }
-#logo.hover{
+#logo.{
 
 }
 .container {
