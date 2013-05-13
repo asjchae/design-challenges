@@ -38,17 +38,12 @@ exports.addchallengepost = function(req, res){
     var d = year + "/" + month + "/" + number;   
     var finishDate = req.body.datepicker.split("/");
     var finish = finishDate[2] + "/" + finishDate[0] + "/" + finishDate[1];
-    console.log(finish);
     var date2 = new Date(finishDate[2], finishDate[0]-1, finishDate[1]);
-    console.log(date2);
     
     var challenge = new Challenge({name: req.body.name, type: req.body.type, 
                         prompt: req.body.prompt, description: req.body.description, 
                         createdby: req.session.teamname, prize: req.body.prize, status: "Open",
                         created: d, closed:finish, datecreated: date, dateclosed: date2});
-
-    console.log("hi");
-    console.log(challenge.dateclosed);
 
     challenge.save(function (err) {
         if (err) {
@@ -78,10 +73,8 @@ exports.challengebrowser = function(req, res){
         if (err) {
             res.send("Could not find all challenges");
         } else if (data.length == 0) {
-            console.log("skip");
             res.render('challengebrowser', {title: "Challenge Browser", challengepack: [], page: 'browser'});
         } else {
-            console.log("meow");
             challengepacker(data, res, function (res, challenge) {
                 res.render('challengebrowser', {title: "Challenge Browser", challengepack: challenge, page: 'browser', loggedin: loggedin});
             })
@@ -98,11 +91,8 @@ function challengepacker(data, res, callback) {
 
         // CHECK FOR OPEN/CLOSE HERE.
             if (response.status == "Open") {
-                console.log
                 var today = new Date();
                 var comparedate = response.dateclosed;
-                console.log(today);
-                console.log(comparedate);
 
                 if (comparedate > today) {
                     // Not yet closed.
