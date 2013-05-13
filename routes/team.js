@@ -100,10 +100,8 @@ exports.teamcheck = function(req, res){
 
             var members ="";
             for (var i=0; i<myteam.members.length-1; i++) {
-                members = members + " "+(myteam.members[i].name) + ", ";
+                members = members + " "+(myteam.members[i].name) + " ";
             }
-            members = members + " and  " +(myteam.members[myteam.members.length-1].name);
-
             console.log(members)
             teamprojects(myteam, function(openprojects, closedprojects, opencreated, closedcreated) {
                 console.log(openprojects)
