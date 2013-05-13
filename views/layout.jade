@@ -1,3 +1,4 @@
+
 doctype 5
 html
   head
@@ -24,7 +25,8 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          a.brand(href='/') Tup
+          a.brand(href='/')
+            img(src='/Team Up.png', id = 'logo')
           .nav-collapse.collapse
             ul.nav
               if (page == 'browser')
@@ -50,7 +52,7 @@ html
               //-     a.bar #{title}
               if (page != 'login')
                 - if (locals.loggedin)
-                  if loggedin = 'yes'
+                  if (loggedin == 'yes')
                     li
                       a.bar(href='/logout') Log Out
                 else

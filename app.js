@@ -63,18 +63,14 @@ app.get('/challengebrowser', challenge.challengebrowser);
 
 app.post('/drop', challenge.drop);
 
-app.post('/selectchallenge', challenge.selectchallenge);
+app.post('/viewchallenge/:selected', challenge.viewchallenge);
+app.get('/viewchallenge/:selected', challenge.viewchallenge);
+
+app.post('/acceptchallenge', challenge.acceptchallenge);
 
 app.get('/about', index.about);
 
-// app.post('/selectchallenge/:selected', function(req,res){
-//   challenge.selectchallenge(req, res, req.params.selected)
-// });
-  //challenge.selectchallenge);
-
-
-// This one needs work, how do we do that thing where we we can write anything and it parses it
-app.get('/challengepage/:selected', challenge.challengepage);
+app.get('/submitchallenge', challenge.submitchallenge);
 
 app.post('/submitchallenge', challenge.submitchallenge);
 app.post('/upload', challenge.upload)

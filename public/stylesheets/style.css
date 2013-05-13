@@ -7,12 +7,23 @@ a {
   color: #00B7FF;
 }
 
+#logo {
+  width:50px;
+  height:18px;
+  width:80px;
+  height:40px;
+  margin-left: 10px
+}
+#logo.hover{
+
+}
+
 .row-fluid {
   width: 940px;
   height: 880px;
 }
 .row-fluid .span6.span6-1 {
-  width: 460px;
+  width: 400px;
 }
 
 .challenge {

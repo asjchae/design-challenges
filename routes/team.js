@@ -143,7 +143,7 @@ function teamprojects(myteam, callback) {
 
                     if (comparedate > today) {
                         // not yet closed
-                        openprojects.push({proj:response.name, url:'/challengepage/'+response.name});
+                        openprojects.push({proj:response.name, url:'/viewchallenge/'+response.name});
 
                         callbacktracker.push('.');
                         if (callbacktracker.length == myteam.projects.length) {
@@ -153,7 +153,7 @@ function teamprojects(myteam, callback) {
                         }
                     } else {
                         // closed
-                        closedprojects.push({proj: response.name, url:'/challengepage/' + response.name});
+                        closedprojects.push({proj: response.name, url:'/viewchallenge/' + response.name});
                         callbacktracker.push('.');
                         if (callbacktracker.length == myteam.projects.length) {
                             teamchallenges(myteam, function(opencreated, closedcreated) {
@@ -163,7 +163,7 @@ function teamprojects(myteam, callback) {
                     }
 
                 } else if (response.status == "Closed") {
-                    closedprojects.push({proj:response.name, url:'/challengepage/'+response.name});
+                    closedprojects.push({proj:response.name, url:'/viewchallenge/'+response.name});
                     callbacktracker.push('.');
                     if (callbacktracker.length == myteam.projects.length) {
                         teamchallenges(myteam, function(opencreated, closedcreated) {
@@ -204,13 +204,13 @@ function teamchallenges(myteam, callback) {
 
                     if (comparedate > today){
                         // Not yet closed.
-                        opencreated.push({chal: response.name, url:'/challengepage/'+response.name});
+                        opencreated.push({chal: response.name, url:'/viewchallenge/'+response.name});
                         callbacktracker.push('.');
                         if (callbacktracker.length == myteam.createdchallenges.length) {
                             callback(opencreated, closedcreated);
                         }
                     } else {
-                        closedcreated.push({chal: response.name, url:'/challengepage/'+response.name});
+                        closedcreated.push({chal: response.name, url:'/viewchallenge/'+response.name});
                         callbacktracker.push('.');
                         if (callbacktracker.length == myteam.createdchallenges.length) {
                             callback(opencreated, closedcreated);
@@ -218,7 +218,7 @@ function teamchallenges(myteam, callback) {
                     }
 
                 } else if (response.status == "Closed") {
-                    closedcreated.push({chal: response.name, url:'/challengepage/'+response.name});
+                    closedcreated.push({chal: response.name, url:'/viewchallenge/'+response.name});
                     callbacktracker.push('.');
                     if (callbacktracker.length == myteam.createdchallenges.length) {
                         callback(opencreated, closedcreated);
