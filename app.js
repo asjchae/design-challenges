@@ -66,7 +66,7 @@ app.post('/drop', challenge.drop);
 app.post('/viewchallenge/:selected', challenge.viewchallenge);
 app.get('/viewchallenge/:selected', challenge.viewchallenge);
 
-app.post('/acceptchallenge', challenge.acceptchallenge);
+app.post('/acceptchallenge', challenge.acceptchallenges);
 
 app.get('/about', index.about);
 

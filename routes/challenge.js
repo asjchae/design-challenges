@@ -161,14 +161,49 @@ exports.viewchallenge = function(req, res){
     });
 };
 
-exports.acceptchallenge = function(req,res){
+// exports.acceptchallenges = function(req, res) {
+//     var proj = req.body.projectname;
+
+//     Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
+//         var projs = response.projects;
+//         projs.push(proj);
+//         Team.update({teamname: response.teamname}, {projects: projs}, {upsert: true}, function (err) {
+//             if (err) {
+//                 console.log("Error", err);
+//             }
+//             res.redirect('/challengebrowser/');
+//         });
+//     });
+// }
+
+exports.acceptchallenges = function(req,res){
+    console.log(1)
     Team.findOne({teamname: req.session.teamname}).exec(function (err, response) {
+        console.log(1)
         var teamprojects = response.projects;
+        console.log(response.projects)
+        
         teamprojects.push(req.body.name);
+
+        Challenge.findOne({name: req.body.name}).exec(function (err, response) {
+            var chal = response;
+            console.log(response);
+        });
+        console.log(1)
+        
         console.log(req.body)
-        Team.update({teamname: req.session.teamname}, {projects: teamprojects}, {upsert: true}, function (err) {
+        Team.update({teamname: response.teamname}, {projects: teamprojects}, {upsert: true}, function (err) {
             // Redirect to the challenge page.
-            return res.render('challengepage', {title: req.body.name, challenge: req.body, mine: true, page: 'challenge'});
+            // return res.json({redirect:'/challengepage/'+req.body.name});
+           
+            Challenge.findOne({name: req.body.name}).exec(function (err, response) {
+                var chal = response;
+                res.render('challengepage', {title: req.body.name, challenge: response, mine: true, page: 'challenge'});
+        
+                console.log(response);
+            });
+        
+            
         });
     });
 }
